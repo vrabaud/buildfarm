@@ -12,7 +12,6 @@ SHORTJOB=$(dirname $1)
 
 /bin/echo "SHORTJOB: $SHORTJOB"
 
-cd $TOP
-./create_chroot.sh $UBUNTU_DISTRO $ARCH
-./$SHORTJOB.sh $DISTRO $ARCH
+$TOP/create_chroot.sh $UBUNTU_DISTRO $ARCH
+$TOP/$SHORTJOB.sh $DISTRO $ARCH
 
