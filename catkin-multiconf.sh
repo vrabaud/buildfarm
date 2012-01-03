@@ -2,24 +2,11 @@
 
 cd $WORKSPACE
 
-export CCACHE_DIR=$WORKSPACE/ccache
-ccache -s
-rm -rf $WORKSPACE/bin
-mkdir $WORKSPACE/bin
-for comp in c++ g++ gcc
-do
-    ln -s /usr/bin/ccache $WORKSPACE/bin/$comp
-done
-export PATH=$WORKSPACE/bin:$PATH
-rehash
-which gcc
-which g++
-which c++
-$WORKSPACE/bin/gcc --version
-
 eval $($WORKSPACE/init_ccache.sh)
 
 /usr/bin/env
+which gcc
+exit 0
 
 rm -rf test.rosinstall*
 wget https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall

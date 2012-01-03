@@ -15,11 +15,19 @@ if [ ! -f $BASETGZ ] ; then
         --extrapackages "lsb-release ccache cmake libopenmpi-dev libboost-dev gccxml python-empy python-yaml python-setuptools openssl sudo"
 fi
 
-sudo pbuilder update \
-    --basetgz $BASETGZ \
-    --extrapackages "sudo"
+UPDATE=$WORKSPACE/buildfarm/update_chroot.sh
+STAMP=$WORKSPACE/update_chroot.sh.stamp
 
-sudo pbuilder execute \
-    --basetgz $BASETGZ \
-    --save-after-exec \
-    -- $WORKSPACE/buildfarm/update_chroot.sh
+if [ -e $STAMP ] ; then
+    /bin/echo -n "Chroot last updated at:"
+    cat $STAMP
+fi
+
+if [ $STAMP -ot $UPDATE ] ; then
+    sudo pbuilder execute \
+        --basetgz $BASETGZ \
+        --save-after-exec \
+        -- $UPDATE
+    date > $STAMP
+fi
+
