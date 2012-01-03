@@ -11,9 +11,13 @@ do
     ln -s /usr/bin/ccache $WORKSPACE/bin/$comp
 done
 export PATH=$WORKSPACE/bin:$PATH
+rehash
 which gcc
 which g++
 which c++
+$WORKSPACE/bin/gcc --version
+
+eval $($WORKSPACE/init_ccache.sh)
 
 /usr/bin/env
 
