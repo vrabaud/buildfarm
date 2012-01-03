@@ -13,4 +13,9 @@ if [ ! -f $BASETGZ ] ; then
         --debootstrapopts --variant=buildd \
         --components "main universe multiverse" \
         --extrapackages "lsb-release ccache cmake libopenmpi-dev libboost-dev gccxml python-empy python-yaml python-setuptools openssl"
+else
+    sudo pbuilder execute \
+        --basetgz $BASETGZ \
+        -- $WORKSPACE/buildfarm/update_chroot.sh
 fi
+
