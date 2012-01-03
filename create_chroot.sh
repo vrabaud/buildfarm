@@ -12,10 +12,14 @@ if [ ! -f $BASETGZ ] ; then
         --basetgz $BASETGZ \
         --debootstrapopts --variant=buildd \
         --components "main universe multiverse" \
-        --extrapackages "lsb-release ccache cmake libopenmpi-dev libboost-dev gccxml python-empy python-yaml python-setuptools openssl"
-else
-    sudo pbuilder execute \
-        --basetgz $BASETGZ \
-        -- $WORKSPACE/buildfarm/update_chroot.sh
+        --extrapackages "lsb-release ccache cmake libopenmpi-dev libboost-dev gccxml python-empy python-yaml python-setuptools openssl sudo"
 fi
 
+sudo pbuilder update \
+    --basetgz $BASETGZ \
+    --extrapackages "sudo"
+
+sudo pbuilder execute \
+    --basetgz $BASETGZ \
+    --save-after-exec \
+    -- $WORKSPACE/buildfarm/update_chroot.sh

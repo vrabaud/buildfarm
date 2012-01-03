@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -ex
 
 TOP=$(cd `dirname $0` ; /bin/pwd)
 

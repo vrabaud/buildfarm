@@ -1,7 +1,22 @@
 #!/bin/sh -x
 
 cd $WORKSPACE
+
+export CCACHE_DIR=$WORKSPACE/ccache
+ccache -s
+rm -rf $WORKSPACE/bin
+mkdir $WORKSPACE/bin
+for comp in c++ g++ gcc
+do
+    ln -s /usr/bin/ccache $WORKSPACE/bin/$comp
+done
+export PATH=$WORKSPACE/bin:$PATH
+which gcc
+which g++
+which c++
+
 /usr/bin/env
+
 rm -rf test.rosinstall*
 wget https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall
 rm -rf src
