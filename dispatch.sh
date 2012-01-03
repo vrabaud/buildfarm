@@ -12,5 +12,6 @@ SHORTJOB=$(dirname $1)
 
 /bin/echo "SHORTJOB: $SHORTJOB"
 
-$TOP/$SHORTJOB.sh $DISTRO $ARCH
+cd $TOP
+./$SHORTJOB.sh $DISTRO $ARCH
 
