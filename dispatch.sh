@@ -30,7 +30,7 @@ $TOP/create_chroot.sh $DISTRO $ARCH
 sudo pbuilder execute \
     --basetgz /var/cache/pbuilder/$DISTRO-$ARCH.tgz \
     --debug \
-    --bindmounts "${CCACHE_DIR} /home /var/lib/hudson"
+    --bindmounts "${CCACHE_DIR} /home"
     -- $TOP/$SHORTJOB.sh $DISTRO $ARCH
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  dispatch.sh ^^^^^^^^^^^^^^^^^^^^"
