@@ -14,7 +14,6 @@ cd $WORKSPACE
 rm -f test.rosinstall*
 wget https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall
 rosinstall -n src test.rosinstall
-cd src
 
 rm -rf SCRATCH
 mkdir SCRATCH
