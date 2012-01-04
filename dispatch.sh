@@ -2,7 +2,10 @@
 
 /bin/echo "vvvvvvvvvvvvvvvvvvv  dispatch.sh vvvvvvvvvvvvvvvvvvvvvv"
 
-[ -n "$WORKSPACE" ] || { /bin/echo "no workspace in dispatch.sh" ; exit 1 }
+if [ -n "$WORKSPACE" ] ; then
+    /bin/echo "no workspace in dispatch.sh"
+    exit 1
+fi
 
 /bin/echo "WORKSPACE=$WORKSPACE"
 
