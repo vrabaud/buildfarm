@@ -11,24 +11,6 @@ fi
 
 cd $WORKSPACE
 
-/usr/bin/env
-which gcc
-gcc --version
-ccache -s
-lsb_release -a
-mount
-ls -l /var/cache/pbuilder/ccache
-ls -l /var/cache/pbuilder
-
-cat > main.cpp <<EOF
-#include <iostream>
-int main(int, char**) { std::cout << "$(date)\n"; }
-EOF
-ccache -s | grep link
-gcc -o main main.cpp -lstdc++
-ccache -s | grep link
-./main
-
 rm -rf test.rosinstall*
 wget https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall
 rm -rf src
@@ -43,6 +25,7 @@ cd build
 cmake ../src
 cat CMakeCache.txt
 export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
+make VERBOSE=1
 make -i test
 $WORKSPACE/build/env.sh $WORKSPACE/src/ros/tools/rosunit/scripts/clean_junit_xml.py
 make install DESTDIR=$(/bin/pwd)/DESTDIR
