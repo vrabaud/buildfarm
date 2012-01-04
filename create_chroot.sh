@@ -25,7 +25,7 @@ else
     /bin/echo -n "No timestamp exists at $STAMP"
 fi
 
-if [ -n $STAMP -o $STAMP -ot $UPDATE ] ; then
+if [ ! -e $STAMP -o $STAMP -ot $UPDATE ] ; then
     /bin/echo "update has been updated, so let's update"
     sudo touch $STAMP
     /bin/echo -n "Stamped:"
