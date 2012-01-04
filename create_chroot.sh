@@ -16,24 +16,26 @@ if [ ! -f $BASETGZ ] ; then
         --components "main universe multiverse"
 fi
 
+STAMP=$WORKSPACE/$IMAGETYPE.$DISTRO.$ARCH.update.stamp
 UPDATE=$WORKSPACE/buildfarm/update_chroot.sh
 
 /bin/echo "This script last updated at:"
 ls -l $UPDATE
-if [ -e $BASETGZ ] ; then
+if [ -e $STAMP ] ; then
     /bin/echo -n "Chroot last updated at:"
-    ls -l $BASETGZ
+    ls -l $STAMP
 else
     /bin/echo "Chroot does not exist!"
     exit 1
 fi
 
-if [ ! -e $BASETGZ -o $UPDATE -nt $BASETGZ ] ; then
+if [ ! -e $BASETGZ -o $UPDATE -nt $STAMP ] ; then
     /bin/echo "update has been updated, so let's update"
     sudo pbuilder execute \
         --basetgz $BASETGZ \
         --save-after-exec \
         -- $UPDATE $IMAGETYPE
+
 fi
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  create_chroot.sh ^^^^^^^^^^^^^^^^^^^^"
