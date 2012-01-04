@@ -3,10 +3,7 @@
 /bin/echo "vvvvvvvvvvvvvvvvvvv  update_chroot.sh vvvvvvvvvvvvvvvvvvvvvv"
 /bin/echo $*
 
-uname -a
 sudo easy_install -U rosinstall
-which gcc
-which ccache
 
 sudo apt-get install ccache wget curl sudo
 
