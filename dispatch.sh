@@ -47,11 +47,7 @@ TOP=$(cd `dirname $0` ; /bin/pwd)
 
 /usr/bin/env
 
-SHORTJOB=$(dirname $JOB_NAME)
-
-/bin/echo "SHORTJOB: $SHORTJOB"
-
-$TOP/create_chroot.sh $UBUNTU_DISTRO $ARCH
+$WORKSPACE/buildfarm/create_chroot.sh $UBUNTU_DISTRO $ARCH
 
 sudo pbuilder execute \
     --basetgz /var/cache/pbuilder/$UBUNTU_DISTRO-$ARCH.tgz \
