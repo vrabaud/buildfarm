@@ -14,7 +14,7 @@ case $1 in
             ccache lsb-release ccache cmake libopenmpi-dev \
             libboost-dev libboost-all-dev python-all \
             gccxml python-empy python-yaml \
-            openssl sudo liblog4cxx10-dev
+            openssl sudo liblog4cxx10-dev libgtest-dev
         ;;
 esac
 
