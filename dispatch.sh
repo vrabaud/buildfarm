@@ -8,8 +8,6 @@ sudo mkdir -p /var/cache/pbuilder/ccache
 sudo chmod a+w /var/cache/pbuilder/ccache
 export CCACHE_DIR="/var/cache/pbuilder/ccache"
 export PATH="/usr/lib/ccache:${PATH}"
-EXTRAPACKAGES="ccache lsb-release ccache cmake libopenmpi-dev libboost-dev gccxml python-empy python-yaml python-setuptools openssl sudo wget"
-BINDMOUNTS="${CCACHE_DIR} /home"
 EOF
 
 
