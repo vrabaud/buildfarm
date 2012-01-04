@@ -71,7 +71,7 @@ $WORKSPACE/buildfarm/create_chroot.sh $IMAGETYPE $UBUNTU_DISTRO $ARCH
 sudo pbuilder execute \
     --basetgz /var/cache/pbuilder/$IMAGETYPE.$UBUNTU_DISTRO.$ARCH.tgz \
     --bindmounts "/var/cache/pbuilder/ccache /home" \
-    --inputfile $SCRIPT.sh \
+    --inputfile $WORKSPACE/buildfarm/$SCRIPT.sh \
     -- $WORKSPACE/pbuilder-env.sh $SCRIPT.sh
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  dispatch.sh ^^^^^^^^^^^^^^^^^^^^"
