@@ -1,5 +1,6 @@
 #!/bin/sh -x
 
+/bin/echo "vvvvvvvvvvvvvvvvvvv  create_chroot.sh vvvvvvvvvvvvvvvvvvvvvv"
 DISTRO=$1
 ARCH=$2
 
@@ -33,3 +34,4 @@ if [ $STAMP -ot $UPDATE ] ; then
         -- $UPDATE
 fi
 
+/bin/echo "^^^^^^^^^^^^^^^^^^  create_chroot.sh ^^^^^^^^^^^^^^^^^^^^"

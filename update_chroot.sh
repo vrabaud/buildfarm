@@ -1,9 +1,9 @@
 #!/bin/sh
 
-/bin/echo "+++++++++++++++++++ $0 +++++++++++++++"
+/bin/echo "vvvvvvvvvvvvvvvvvvv  update_chroot.sh vvvvvvvvvvvvvvvvvvvvvv"
 uname -a
 sudo easy_install -U rosinstall
 which gcc
 which ccache
 
-/bin/echo "++++++++++ Done updating chroot ++++++++++++"
+/bin/echo "^^^^^^^^^^^^^^^^^^  update_chroot.sh ^^^^^^^^^^^^^^^^^^^^"
