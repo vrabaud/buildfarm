@@ -56,7 +56,7 @@ pwd
 ls -l
 cd $WORKSPACE
 ls -l
-exec "\$@"
+exec $WORKSPACE/"\$@"
 EOF
 
 chmod 755 pbuilder-env.sh
