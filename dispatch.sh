@@ -1,13 +1,12 @@
-#!/bin/sh -ex
+#!/bin/bash -ex
+
+TOP=$(cd `dirname $0` ; pwd)
+. $TOP/buildfarm_util.sh
+
+assert_set WORKSPACE HOME
 
 /bin/echo "vvvvvvvvvvvvvvvvvvv  dispatch.sh vvvvvvvvvvvvvvvvvvvvvv"
 
-if [ -n "$WORKSPACE" ] ; then
-    /bin/echo "no workspace in dispatch.sh"
-    exit 1
-fi
-
-/bin/echo "WORKSPACE=$WORKSPACE"
 
 
 cat > $HOME/.pbuilderrc <<EOF
