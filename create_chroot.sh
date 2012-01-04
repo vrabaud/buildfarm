@@ -1,10 +1,11 @@
 #!/bin/sh -x
 
 /bin/echo "vvvvvvvvvvvvvvvvvvv  create_chroot.sh vvvvvvvvvvvvvvvvvvvvvv"
-DISTRO=$1
-ARCH=$2
+IMAGETYPE=$1
+DISTRO=$2
+ARCH=$3
 
-BASETGZ=/var/cache/pbuilder/$DISTRO-$ARCH.tgz
+BASETGZ=/var/cache/pbuilder/$IMAGETYPE.$DISTRO.$ARCH.tgz
 
 if [ ! -f $BASETGZ ] ; then
     sudo pbuilder --create \
@@ -15,25 +16,24 @@ if [ ! -f $BASETGZ ] ; then
         --components "main universe multiverse"
 fi
 
-UPDATE=$WORKSPACE/buildfarm/update_chroot.sh
-STAMP=$WORKSPACE/$DISTRO-$ARCH.update_chroot.sh.stamp
+UPDATE=$WORKSPACE/buildfarm/update_chroot.sh $IMAGETYPE
 
-if [ -e $STAMP ] ; then
+/bin/echo "This script last updated at:"
+ls -l $0
+if [ -e $BASETGZ ] ; then
     /bin/echo -n "Chroot last updated at:"
-    ls -l $STAMP
+    ls -l $BASETGZ
 else
-    /bin/echo -n "No timestamp exists at $STAMP"
+    /bin/echo "Chroot does not exist!"
+    exit 1
 fi
 
-if [ ! -e $STAMP -o $STAMP -ot $UPDATE ] ; then
+if [ ! -e $BASETGZ -o $0 -ot $BASETGZ ] ; then
     /bin/echo "update has been updated, so let's update"
-    sudo touch $STAMP
-    /bin/echo -n "Stamped:"
-    ls -l $STAMP
     sudo pbuilder execute \
         --basetgz $BASETGZ \
         --save-after-exec \
-        -- $UPDATE
+        -- $UPDATE $IMAGETYPE
 fi
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  create_chroot.sh ^^^^^^^^^^^^^^^^^^^^"

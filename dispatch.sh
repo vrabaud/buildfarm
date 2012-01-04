@@ -7,13 +7,15 @@ if [ -z "$WORKSPACE" ] ; then
     exit 1
 fi
 
-[[ $JOB_NAME =~ ([^\.]+)\.([^\.]+)\.([^\.]+) ]]
+[[ $JOB_NAME =~ ([^\.]+)\.([^\.]+)\.([^\.]+).([^\.]) ]]
 SCRIPT=${BASH_REMATCH[1]}
-UBUNTU_DISTRO=${BASH_REMATCH[2]}
-ARCH=${BASH_REMATCH[3]}
+IMAGETYPE=${BASH_REMATCH[2]}
+UBUNTU_DISTRO=${BASH_REMATCH[3]}
+ARCH=${BASH_REMATCH[4]}
 
 /bin/echo <<EOF
 SCRIPT=$SCRIPT
+IMAGETYPE=$IMAGETYPE
 UBUNTU_DISTRO=$UBUNTU_DISTRO
 ARCH=$ARCH
 EOF
@@ -49,6 +51,7 @@ export PATH="/usr/lib/ccache:${PATH}"
 export WORKSPACE=$WORKSPACE
 export UBUNTU_DISTRO=$UBUNTU_DISTRO
 export ARCH=$ARCH
+export IMAGETYPE=$IMAGETYPE
 cd $WORKSPACE
 exec "$@"
 EOF
@@ -58,11 +61,11 @@ TOP=$(cd `dirname $0` ; /bin/pwd)
 
 /usr/bin/env
 
-$WORKSPACE/buildfarm/create_chroot.sh $UBUNTU_DISTRO $ARCH
+$WORKSPACE/buildfarm/create_chroot.sh $IMAGETYPE $UBUNTU_DISTRO $ARCH
 
 
 sudo pbuilder execute \
-    --basetgz /var/cache/pbuilder/$UBUNTU_DISTRO-$ARCH.tgz \
+    --basetgz /var/cache/pbuilder/$IMAGETYPE.$UBUNTU_DISTRO.$ARCH.tgz \
     --bindmounts "/var/cache/pbuilder/ccache /home" \
     --inputfile $SCRIPT.sh \
     -- $WORKSPACE/pbuilder-env.sh $SCRIPT.sh
