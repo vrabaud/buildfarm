@@ -4,7 +4,7 @@
 /bin/echo $*
 id
 
-sudo apt-get install python-setuptools
+apt-get install python-setuptools
 
 easy_install -U rosinstall
 
