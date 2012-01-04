@@ -1,12 +1,32 @@
-#!/bin/bash -ex
+export
 
-TOP=$(cd `dirname $0` ; pwd)
-. $TOP/buildfarm_util.sh
+if [ -z "$WORKSPACE" ] ; then
+    /bin/echo "Uh, workspace not set."
+    exit 1
+fi
+
+#
+#  update buildfarm utils
+#
+cd $WORKSPACE
+
+if [ -d buildfarm ] ; then
+  cd buildfarm
+  git clean -dfx
+  git reset --hard HEAD
+  git pull
+  cd ..
+else
+  git clone git://github.com/willowgarage/buildfarm.git
+fi
+
+. ./buildfarm/buildfarm_util.sh
 
 assert_set WORKSPACE HOME
 
 /bin/echo "vvvvvvvvvvvvvvvvvvv  dispatch.sh vvvvvvvvvvvvvvvvvvvvvv"
 
+export > env
 
 
 cat > $HOME/.pbuilderrc <<EOF
@@ -23,21 +43,17 @@ EOF
 
 TOP=$(cd `dirname $0` ; /bin/pwd)
 
-JOB_NAME=$1
-DISTRO=$2
-ARCH=$3
-
 /usr/bin/env
 
-SHORTJOB=$(dirname $1)
+SHORTJOB=$(dirname $JOB_NAME)
 
 /bin/echo "SHORTJOB: $SHORTJOB"
 
-$TOP/create_chroot.sh $DISTRO $ARCH
+$TOP/create_chroot.sh $UBUNTU_DISTRO $ARCH
 
 sudo pbuilder execute \
-    --basetgz /var/cache/pbuilder/$DISTRO-$ARCH.tgz \
+    --basetgz /var/cache/pbuilder/$UBUNTU_DISTRO-$ARCH.tgz \
     --bindmounts "/var/cache/pbuilder/ccache /home" \
-    -- $TOP/$SHORTJOB.sh $DISTRO $ARCH
+    -- $TOP/$SHORTJOB.sh $UBUNTU_DISTRO $ARCH
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  dispatch.sh ^^^^^^^^^^^^^^^^^^^^"
