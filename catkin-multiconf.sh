@@ -9,6 +9,11 @@ which gcc
 gcc --version
 ccache -s
 lsb_release -a
+mount
+ls -l /var/cache/pbuilder/ccache
+ls -l /var/cache/pbuilder
+
+exit 0
 
 rm -rf test.rosinstall*
 wget https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall
