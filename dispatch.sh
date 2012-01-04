@@ -7,6 +7,17 @@ if [ -z "$WORKSPACE" ] ; then
     exit 1
 fi
 
+[[ $JOBNAME =~ ([^\.]+)\.([^\.]+)\.([^\.]+) ]]
+SCRIPT=${BASH_REMATCH[1]}
+UBUNTU_DISTRO=${BASH_REMATCH[2]}
+ARCH=${BASH_REMATCH[3]}
+
+/bin/echo <<EOF
+SCRIPT=$SCRIPT
+UBUNTU_DISTRO=$UBUNTU_DISTRO
+ARCH=$ARCH
+EOF
+
 #
 #  update buildfarm utils
 #
@@ -49,15 +60,11 @@ TOP=$(cd `dirname $0` ; /bin/pwd)
 
 $WORKSPACE/buildfarm/create_chroot.sh $UBUNTU_DISTRO $ARCH
 
-[[ $JOBNAME =~ ([^\.]+)\.([^\.]+)\.([^\.]+) ]]
-SCRIPT=${BASH_REMATCH[1]}
-UBUNTU_DISTRO=${BASH_REMATCH[2]}
-ARCH=${BASH_REMATCH[3]}
 
 sudo pbuilder execute \
     --basetgz /var/cache/pbuilder/$UBUNTU_DISTRO-$ARCH.tgz \
     --bindmounts "/var/cache/pbuilder/ccache /home" \
-    --inputfile $JOB_NAME.sh \
-    -- $WORKSPACE/pbuilder-env.sh $JOB_NAME.sh
+    --inputfile $SCRIPT.sh \
+    -- $WORKSPACE/pbuilder-env.sh $SCRIPT.sh
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  dispatch.sh ^^^^^^^^^^^^^^^^^^^^"
