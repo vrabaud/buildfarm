@@ -9,12 +9,7 @@ BASETGZ=/var/cache/pbuilder/$IMAGETYPE.$DISTRO.$ARCH.tgz
 IMAGELOCK=/var/cache/pbuilder/$IMAGETYPE.$DISTRO.$ARCH.updatelock
 
 if [ ! -f $BASETGZ ] ; then
-    sudo pbuilder --create \
-        --distribution $DISTRO \
-        --architecture $ARCH \
-        --basetgz $BASETGZ \
-        --debootstrapopts --variant=buildd \
-        --components "main universe multiverse"
+    sudo flock $IMAGELOCK -c "pbuilder --create --distribution $DISTRO --architecture $ARCH --basetgz $BASETGZ --debootstrapopts --variant=buildd --components \"main universe multiverse\""
 fi
 
 STAMP=$WORKSPACE/$IMAGETYPE.$DISTRO.$ARCH.update.stamp
