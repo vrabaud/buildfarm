@@ -1,2 +1,18 @@
 /bin/echo "boilerplate"
 
+pwd
+/usr/bin/env
+ls -l
+
+cat $HOME/.pbuilderrc || /bin/true
+
+if [ -d buildfarm ] ; then
+  cd buildfarm
+  git clean -dfx
+  git pull
+  cd ..
+else
+  git clone git://github.com/willowgarage/buildfarm.git
+fi
+
+
