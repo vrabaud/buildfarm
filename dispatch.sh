@@ -1,3 +1,4 @@
+set -ex
 /bin/echo "vvvvvvvvvvvvvvvvvvv  dispatch.sh vvvvvvvvvvvvvvvvvvvvvv"
 
 export WORKSPACE

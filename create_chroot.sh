@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh -ex
 
 /bin/echo "vvvvvvvvvvvvvvvvvvv  create_chroot.sh vvvvvvvvvvvvvvvvvvvvvv"
 IMAGETYPE=$1

@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/sh -ex
 
 /bin/echo "vvvvvvvvvvvvvvvvvvv  update_chroot.sh vvvvvvvvvvvvvvvvvvvvvv"
 /bin/echo $*
@@ -6,7 +6,7 @@ id
 
 easy_install -U rosinstall
 
-apt-get install ccache wget curl sudo
+apt-get install ccache wget curl curl-ssl sudo
 
 case $1 in
     fat)
