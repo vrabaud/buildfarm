@@ -2,6 +2,11 @@
 
 /bin/echo "vvvvvvvvvvvvvvvvvvv  catkin_multiconf.sh vvvvvvvvvvvvvvvvvvvvvv"
 
+if [ -n "$WORKSPACE" ] ; then
+    /bin/echo "Don't see no workspace."
+    exit 1
+fi
+
 cd $WORKSPACE
 
 /usr/bin/env
