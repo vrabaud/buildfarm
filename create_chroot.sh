@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 
 DISTRO=$1
 ARCH=$2

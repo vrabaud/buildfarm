@@ -1,12 +1,15 @@
 #!/bin/sh -x
 
+echo "+++++++++++++++++++ $0 +++++++++++++++"
+
 cd $WORKSPACE
 
 /usr/bin/env
 which gcc
 ccache -s
-exit 0
+lsb_release -a
 
+exit 0
 rm -rf test.rosinstall*
 wget https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall
 rm -rf src
