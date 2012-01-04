@@ -7,7 +7,7 @@ if [ -z "$WORKSPACE" ] ; then
     exit 1
 fi
 
-[[ $JOBNAME =~ ([^\.]+)\.([^\.]+)\.([^\.]+) ]]
+[[ $JOB_NAME =~ ([^\.]+)\.([^\.]+)\.([^\.]+) ]]
 SCRIPT=${BASH_REMATCH[1]}
 UBUNTU_DISTRO=${BASH_REMATCH[2]}
 ARCH=${BASH_REMATCH[3]}
