@@ -36,6 +36,8 @@ if [ ! -e $BASETGZ -o $UPDATE -nt $STAMP ] ; then
         --save-after-exec \
         -- $UPDATE $IMAGETYPE
 
+    # only after update is successful.
+    touch $STAMP
 fi
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  create_chroot.sh ^^^^^^^^^^^^^^^^^^^^"
