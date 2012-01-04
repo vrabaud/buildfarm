@@ -2,6 +2,11 @@
 
 /bin/echo "vvvvvvvvvvvvvvvvvvv  dispatch.sh vvvvvvvvvvvvvvvvvvvvvv"
 
+[ -n "$WORKSPACE" ] || { /bin/echo "no workspace in dispatch.sh" ; exit 1 }
+
+/bin/echo "WORKSPACE=$WORKSPACE"
+
+
 cat > $HOME/.pbuilderrc <<EOF
 /bin/echo "******* READING .PBUILDERRC **********"
 set -x
