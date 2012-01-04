@@ -2,10 +2,11 @@
 
 echo "$*"
 id
+/usr/bin/env
 
 ./buildfarm/sanity_check.sh
 
-/bin/echo "vvvvvvvvvvvvvvvvvvv  catkin-installed-per-stack.sh vvvvvvvvvvvvvvvvvvvvvv"
+/bin/echo "vvvvvvvvvvvvvvvvvvv  catkin-install-per-stack.sh vvvvvvvvvvvvvvvvvvvvvv"
 
 if [ -z "$WORKSPACE" ] ; then
     /bin/echo "Don't see no workspace."
@@ -21,4 +22,4 @@ rm -rf SCRATCH
 mkdir SCRATCH
 ./src/catkin/test/incremental_by_stack_build.sh src SCRATCH
 
-/bin/echo "^^^^^^^^^^^^^^^^^^  catkin-installed-per-stack.sh ^^^^^^^^^^^^^^^^^^^^"
+/bin/echo "^^^^^^^^^^^^^^^^^^  catkin-install-per-stack.sh ^^^^^^^^^^^^^^^^^^^^"
