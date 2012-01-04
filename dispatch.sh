@@ -52,7 +52,10 @@ export WORKSPACE=$WORKSPACE
 export UBUNTU_DISTRO=$UBUNTU_DISTRO
 export ARCH=$ARCH
 export IMAGETYPE=$IMAGETYPE
+pwd
+ls -l
 cd $WORKSPACE
+ls -l
 exec "$@"
 EOF
 
