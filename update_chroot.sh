@@ -4,11 +4,9 @@
 /bin/echo $*
 id
 
-apt-get install python-setuptools
+apt-get install -y python-setuptools ccache wget curl curl-ssl sudo
 
 easy_install -U rosinstall
-
-apt-get install ccache wget curl curl-ssl sudo
 
 case $1 in
     fat)
