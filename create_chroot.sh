@@ -25,19 +25,11 @@ ls -l $UPDATE
 
 
 if [ ! -f $STAMP -o $UPDATE -nt $STAMP ] ; then
-    (
-        flock -s 200
+    touch $STAMP
 
-        touch $STAMP
+    /bin/echo "update has been updated, so let's update"
+    sudo flock $IMAGELOCK -c "pbuilder execute --basetgz $BASETGZ --save-after-exec -- $UPDATE $IMAGETYPE"
 
-        /bin/echo "update has been updated, so let's update"
-        sudo pbuilder execute \
-            --basetgz $BASETGZ \
-            --save-after-exec \
-            -- $UPDATE $IMAGETYPE
-
-    # only after update is successful.
-    ) 200>$IMAGELOCK
 fi
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  create_chroot.sh ^^^^^^^^^^^^^^^^^^^^"
