@@ -28,7 +28,7 @@ else
     exit 1
 fi
 
-if [ ! -e $BASETGZ -o $0 -nt $BASETGZ ] ; then
+if [ ! -e $BASETGZ -o $UPDATE -nt $BASETGZ ] ; then
     /bin/echo "update has been updated, so let's update"
     sudo pbuilder execute \
         --basetgz $BASETGZ \
