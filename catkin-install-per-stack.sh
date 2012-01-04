@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/bin/bash -x
 
 echo "$*"
+id
 
 ./buildfarm/sanity_check.sh
 
