@@ -3,7 +3,7 @@
 DISTRO=$1
 ARCH=$2
 
-BASETGZ=$DISTRO-$ARCH.tgz
+BASETGZ=/var/cache/pbuilder/$DISTRO-$ARCH.tgz
 
 if [ ! -f $BASETGZ ] ; then
     sudo pbuilder --create \
@@ -29,6 +29,7 @@ if [ $STAMP -ot $UPDATE ] ; then
     sudo pbuilder execute \
         --basetgz $BASETGZ \
         --save-after-exec \
+        --bindmount /home \
         -- $UPDATE
 fi
 

@@ -5,7 +5,7 @@ sudo mkdir -p /var/cache/pbuilder/ccache
 sudo chmod a+w /var/cache/pbuilder/ccache
 export CCACHE_DIR="/var/cache/pbuilder/ccache"
 export PATH="/usr/lib/ccache:${PATH}"
-EXTRAPACKAGES=ccache
+EXTRAPACKAGES="ccache lsb-release ccache cmake libopenmpi-dev libboost-dev gccxml python-empy python-yaml python-setuptools openssl sudo wget"
 BINDMOUNTS="${CCACHE_DIR}"
 EOF
 
@@ -25,6 +25,7 @@ SHORTJOB=$(dirname $1)
 $TOP/create_chroot.sh $DISTRO $ARCH
 
 sudo pbuilder execute \
-    --basetgz $DISTRO-$ARCH.tgz \
+    --basetgz /var/cache/pbuilder/$DISTRO-$ARCH.tgz \
+    --bindmount /home \
     -- $TOP/$SHORTJOB.sh $DISTRO $ARCH
 
