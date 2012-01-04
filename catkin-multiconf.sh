@@ -22,8 +22,6 @@ gcc -o main main.cpp -lstdc++
 ccache -s | grep link
 ./main
 
-exit 0
-
 rm -rf test.rosinstall*
 wget https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall
 rm -rf src

@@ -8,6 +8,7 @@ sudo mkdir -p /var/cache/pbuilder/ccache
 sudo chmod a+w /var/cache/pbuilder/ccache
 export CCACHE_DIR="/var/cache/pbuilder/ccache"
 export PATH="/usr/lib/ccache:${PATH}"
+export WORKSPACE=$WORKSPACE
 EOF
 
 
