@@ -4,7 +4,7 @@
 
 cat $HOME/.pbuilderrc
 
-if [ -n "$WORKSPACE" ] ; then
+if [ -z "$WORKSPACE" ] ; then
     /bin/echo "Don't see no workspace."
     exit 1
 fi
