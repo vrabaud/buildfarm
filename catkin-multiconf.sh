@@ -2,6 +2,8 @@
 
 /bin/echo "vvvvvvvvvvvvvvvvvvv  catkin_multiconf.sh vvvvvvvvvvvvvvvvvvvvvv"
 
+cat $HOME/.pbuilderrc
+
 if [ -n "$WORKSPACE" ] ; then
     /bin/echo "Don't see no workspace."
     exit 1
