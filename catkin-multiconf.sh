@@ -2,10 +2,9 @@
 
 cd $WORKSPACE
 
-eval $($WORKSPACE/init_ccache.sh)
-
 /usr/bin/env
 which gcc
+ccache -s
 exit 0
 
 rm -rf test.rosinstall*
