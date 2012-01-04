@@ -1,6 +1,8 @@
 #!/bin/sh
 
 /bin/echo "vvvvvvvvvvvvvvvvvvv  update_chroot.sh vvvvvvvvvvvvvvvvvvvvvv"
+/bin/echo $*
+
 uname -a
 sudo easy_install -U rosinstall
 which gcc

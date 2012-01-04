@@ -16,7 +16,7 @@ if [ ! -f $BASETGZ ] ; then
         --components "main universe multiverse"
 fi
 
-UPDATE=$WORKSPACE/buildfarm/update_chroot.sh $IMAGETYPE
+UPDATE=$WORKSPACE/buildfarm/update_chroot.sh
 
 /bin/echo "This script last updated at:"
 ls -l $0
