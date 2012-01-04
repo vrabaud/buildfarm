@@ -26,6 +26,6 @@ $TOP/create_chroot.sh $DISTRO $ARCH
 
 sudo pbuilder execute \
     --basetgz /var/cache/pbuilder/$DISTRO-$ARCH.tgz \
-    --bindmount /home \
+    --bindmounts /home \
     -- $TOP/$SHORTJOB.sh $DISTRO $ARCH
 

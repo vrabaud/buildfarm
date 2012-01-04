@@ -1,4 +1,4 @@
-#!/bin/sh -x
+#!/bin/sh
 
 /bin/echo "+++++++++++++++++++ $0 +++++++++++++++"
 uname -a
@@ -6,4 +6,4 @@ sudo easy_install -U rosinstall
 which gcc
 which ccache
 
-/bin/echo "Done updating chroot."
+/bin/echo "++++++++++ Done updating chroot ++++++++++++"
