@@ -49,6 +49,11 @@ TOP=$(cd `dirname $0` ; /bin/pwd)
 
 $WORKSPACE/buildfarm/create_chroot.sh $UBUNTU_DISTRO $ARCH
 
+[[ $JOBNAME =~ ([^\.]+)\.([^\.]+)\.([^\.]+) ]]
+SCRIPT=${BASH_REMATCH[1]}
+UBUNTU_DISTRO=${BASH_REMATCH[2]}
+ARCH=${BASH_REMATCH[3]}
+
 sudo pbuilder execute \
     --basetgz /var/cache/pbuilder/$UBUNTU_DISTRO-$ARCH.tgz \
     --bindmounts "/var/cache/pbuilder/ccache /home" \
