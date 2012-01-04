@@ -2,4 +2,4 @@
 
 echo "$*"
 
-./sanity_check.sh
+./buildfarm/sanity_check.sh
