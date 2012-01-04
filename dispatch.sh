@@ -3,6 +3,7 @@
 /bin/echo "vvvvvvvvvvvvvvvvvvv  dispatch.sh vvvvvvvvvvvvvvvvvvvvvv"
 
 cat > $HOME/.pbuilderrc <<EOF
+/bin/echo "******* READING .PBUILDERRC **********"
 sudo mkdir -p /var/cache/pbuilder/ccache
 sudo chmod a+w /var/cache/pbuilder/ccache
 export CCACHE_DIR="/var/cache/pbuilder/ccache"
