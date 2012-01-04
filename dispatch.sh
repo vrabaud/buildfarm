@@ -70,6 +70,10 @@ TOP=$(cd `dirname $0` ; /bin/pwd)
 $WORKSPACE/buildfarm/create_chroot.sh $IMAGETYPE $UBUNTU_DISTRO $ARCH
 
 
+if ! which pbuilder; then
+    sudo apt-get -y install pbuilder
+fi
+
 sudo pbuilder execute \
     --basetgz /var/cache/pbuilder/$IMAGETYPE.$UBUNTU_DISTRO.$ARCH.tgz \
     --bindmounts "/var/cache/pbuilder/ccache /home" \
