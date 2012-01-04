@@ -21,15 +21,8 @@ UPDATE=$WORKSPACE/buildfarm/update_chroot.sh
 
 /bin/echo "This script last updated at:"
 ls -l $UPDATE
-if [ -e $STAMP ] ; then
-    /bin/echo -n "Chroot last updated at:"
-    ls -l $STAMP
-else
-    /bin/echo "Chroot does not exist!"
-    exit 1
-fi
 
-if [ ! -e $BASETGZ -o $UPDATE -nt $STAMP ] ; then
+if [ ! -f $STAMP -o $UPDATE -nt $STAMP ] ; then
     /bin/echo "update has been updated, so let's update"
     sudo pbuilder execute \
         --basetgz $BASETGZ \
