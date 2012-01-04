@@ -6,10 +6,10 @@ cd $WORKSPACE
 
 /usr/bin/env
 which gcc
+gcc --version
 ccache -s
 lsb_release -a
 
-exit 0
 rm -rf test.rosinstall*
 wget https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall
 rm -rf src

@@ -23,5 +23,8 @@ SHORTJOB=$(dirname $1)
 /bin/echo "SHORTJOB: $SHORTJOB"
 
 $TOP/create_chroot.sh $DISTRO $ARCH
-$TOP/$SHORTJOB.sh $DISTRO $ARCH
+
+sudo pbuilder execute \
+    --basetgz $DISTRO-$ARCH.tgz \
+    -- $TOP/$SHORTJOB.sh $DISTRO $ARCH
 
