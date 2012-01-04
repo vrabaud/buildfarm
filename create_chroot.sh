@@ -19,7 +19,7 @@ fi
 UPDATE=$WORKSPACE/buildfarm/update_chroot.sh
 
 /bin/echo "This script last updated at:"
-ls -l $0
+ls -l $UPDATE
 if [ -e $BASETGZ ] ; then
     /bin/echo -n "Chroot last updated at:"
     ls -l $BASETGZ
