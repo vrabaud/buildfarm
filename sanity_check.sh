@@ -6,6 +6,9 @@ gcc --version
 which ccache
 ccache -s
 
+which curl
+which rosinstall
+
 cat > main.cpp <<EOF
 #include <iostream>
 int main(int, char**) { std::cout << "$(date)\n"; }
