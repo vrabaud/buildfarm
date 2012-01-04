@@ -5,8 +5,6 @@ if [ -z "$WORKSPACE" ] ; then
     exit 1
 fi
 
-echo $HOME
-
 #
 #  update buildfarm utils
 #
@@ -24,22 +22,26 @@ fi
 
 . ./buildfarm/buildfarm_util.sh
 
-assert_set WORKSPACE HOME
+assert_set WORKSPACE
 
 /bin/echo "vvvvvvvvvvvvvvvvvvv  dispatch.sh vvvvvvvvvvvvvvvvvvvvvv"
 
 export > env
 
 
-cat > $HOME/.pbuilderrc <<EOF
-/bin/echo "******* READING .PBUILDERRC **********"
-set -x
 sudo mkdir -p /var/cache/pbuilder/ccache
 sudo chmod a+w /var/cache/pbuilder/ccache
+
+cat > pbuilder-env.sh <<EOF
+/bin/echo "******* READING .PBUILDERRC **********"
+set -x
 export CCACHE_DIR="/var/cache/pbuilder/ccache"
 export PATH="/usr/lib/ccache:${PATH}"
 export WORKSPACE=$WORKSPACE
-set +x
+export UBUNTU_DISTRO=$UBUNTU_DISTRO
+export ARCH=$ARCH
+cd $WORKSPACE
+exec "$@"
 EOF
 
 
@@ -56,6 +58,7 @@ $TOP/create_chroot.sh $UBUNTU_DISTRO $ARCH
 sudo pbuilder execute \
     --basetgz /var/cache/pbuilder/$UBUNTU_DISTRO-$ARCH.tgz \
     --bindmounts "/var/cache/pbuilder/ccache /home" \
-    -- $TOP/$SHORTJOB.sh $UBUNTU_DISTRO $ARCH
+    --inputfile $JOB_NAME.sh \
+    -- $WORKSPACE/pbuilder-env.sh $JOB_NAME.sh
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  dispatch.sh ^^^^^^^^^^^^^^^^^^^^"
