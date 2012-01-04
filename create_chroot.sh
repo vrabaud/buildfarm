@@ -26,8 +26,7 @@ fi
 
 if [ -n $STAMP -o $STAMP -ot $UPDATE ] ; then
     /bin/echo "update has been updated, so let's update"
-    sudo /bin/
-    date > $STAMP
+    sudo touch $STAMP
     sudo pbuilder execute \
         --basetgz $BASETGZ \
         --save-after-exec \
