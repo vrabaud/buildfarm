@@ -30,7 +30,6 @@ if [ -n $STAMP -o $STAMP -ot $UPDATE ] ; then
     sudo pbuilder execute \
         --basetgz $BASETGZ \
         --save-after-exec \
-        --bindmounts /home \
         -- $UPDATE
 fi
 
