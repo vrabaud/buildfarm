@@ -44,8 +44,8 @@ sudo mkdir -p /var/cache/pbuilder/ccache
 sudo chmod a+w /var/cache/pbuilder/ccache
 
 cat > pbuilder-env.sh <<EOF
+#!/bin/sh -x
 /bin/echo "vvvvvvvvvvvvvvvvvvv  pbuilder-env.sh vvvvvvvvvvvvvvvvvvvvvv"
-set -x
 export CCACHE_DIR="/var/cache/pbuilder/ccache"
 export PATH="/usr/lib/ccache:${PATH}"
 export WORKSPACE=$WORKSPACE
@@ -56,6 +56,7 @@ cd $WORKSPACE
 exec "$@"
 EOF
 
+chmod 755 pbuilder-env.sh
 
 TOP=$(cd `dirname $0` ; /bin/pwd)
 
