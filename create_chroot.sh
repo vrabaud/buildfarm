@@ -17,7 +17,7 @@ if [ ! -f $BASETGZ ] ; then
 fi
 
 UPDATE=$WORKSPACE/buildfarm/update_chroot.sh
-STAMP=/var/cache/pbuilder/$DISTRO-$ARCH.update_chroot.sh.stamp
+STAMP=$WORKSPACE/$DISTRO-$ARCH.update_chroot.sh.stamp
 
 if [ -e $STAMP ] ; then
     /bin/echo -n "Chroot last updated at:"
