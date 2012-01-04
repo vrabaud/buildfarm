@@ -1,11 +1,13 @@
 assert_set ()
 {
-    for var in $* ; do
+    for VAR in $* ; do
+        /bin/echo -n "Checking $VAR..."
         if [ -z "${!VAR}" ] ; then
-            /bin/echo "$VAR not set"
-            exit 1
+            /bin/echo "UNSET"
+            ERR="y"
         else
-            /bin/echo "  $VAR = '${!VAR}'"
+            /bin/echo " = '${!VAR}'"
         fi
     done
+    [ -n "$ERR" ] && exit 1
 }

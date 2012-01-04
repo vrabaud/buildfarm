@@ -1,9 +1,11 @@
-export
+export WORKSPACE
 
 if [ -z "$WORKSPACE" ] ; then
     /bin/echo "Uh, workspace not set."
     exit 1
 fi
+
+echo $HOME
 
 #
 #  update buildfarm utils
