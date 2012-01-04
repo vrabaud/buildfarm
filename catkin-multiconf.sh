@@ -1,6 +1,6 @@
 #!/bin/sh -x
 
-echo "+++++++++++++++++++ $0 +++++++++++++++"
+/bin/echo "vvvvvvvvvvvvvvvvvvv  catkin_multiconf.sh vvvvvvvvvvvvvvvvvvvvvv"
 
 cd $WORKSPACE
 
@@ -29,3 +29,4 @@ $WORKSPACE/build/env.sh $WORKSPACE/src/ros/tools/rosunit/scripts/clean_junit_xml
 make install DESTDIR=$(/bin/pwd)/DESTDIR
 
 
+/bin/echo "^^^^^^^^^^^^^^^^^^  catkin_multiconf.sh ^^^^^^^^^^^^^^^^^^^^"
