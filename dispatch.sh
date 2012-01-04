@@ -1,3 +1,5 @@
+/bin/echo "vvvvvvvvvvvvvvvvvvv  dispatch.sh vvvvvvvvvvvvvvvvvvvvvv"
+
 export WORKSPACE
 
 if [ -z "$WORKSPACE" ] ; then
@@ -22,10 +24,6 @@ fi
 
 . ./buildfarm/buildfarm_util.sh
 
-assert_set WORKSPACE
-
-/bin/echo "vvvvvvvvvvvvvvvvvvv  dispatch.sh vvvvvvvvvvvvvvvvvvvvvv"
-
 export > env
 
 
@@ -33,7 +31,7 @@ sudo mkdir -p /var/cache/pbuilder/ccache
 sudo chmod a+w /var/cache/pbuilder/ccache
 
 cat > pbuilder-env.sh <<EOF
-/bin/echo "******* READING .PBUILDERRC **********"
+/bin/echo "vvvvvvvvvvvvvvvvvvv  pbuilder-env.sh vvvvvvvvvvvvvvvvvvvvvv"
 set -x
 export CCACHE_DIR="/var/cache/pbuilder/ccache"
 export PATH="/usr/lib/ccache:${PATH}"
