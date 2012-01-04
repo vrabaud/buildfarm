@@ -11,9 +11,8 @@ fi
 
 cd $WORKSPACE
 
-rm -rf test.rosinstall*
+rm -f test.rosinstall*
 wget https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall
-rm -rf src
 rosinstall -n src test.rosinstall
 cd src
 rm -f CMakeLists.txt
