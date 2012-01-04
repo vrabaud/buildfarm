@@ -17,15 +17,16 @@ if [ ! -f $BASETGZ ] ; then
 fi
 
 UPDATE=$WORKSPACE/buildfarm/update_chroot.sh
-STAMP=$WORKSPACE/update_chroot.sh.stamp
+STAMP=/var/cache/pbuilder/$DISTRO-$ARCH.update_chroot.sh.stamp
 
 if [ -e $STAMP ] ; then
     /bin/echo -n "Chroot last updated at:"
-    cat $STAMP
+    ls -l $STAMP
 fi
 
-if [ $STAMP -ot $UPDATE ] ; then
+if [ -n $STAMP -o $STAMP -ot $UPDATE ] ; then
     /bin/echo "update has been updated, so let's update"
+    sudo /bin/
     date > $STAMP
     sudo pbuilder execute \
         --basetgz $BASETGZ \
