@@ -8,6 +8,10 @@ if [ -z "$WORKSPACE" ] ; then
     exit 1
 fi
 
+/bin/echo "IF you fail here your job name is corrupt."
+/bin/echo "Format:"
+/bin/echo "some-script-name.IMAGETYPE.UBUNTUCODENAME.ARCH"
+
 [[ $JOB_NAME =~ ([^\.]+)\.([^\.]+)\.([^\.]+)\.([^\.]+) ]]
 SCRIPT=${BASH_REMATCH[1]}
 IMAGETYPE=${BASH_REMATCH[2]}
