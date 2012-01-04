@@ -56,6 +56,7 @@ pwd
 ls -l
 cd $WORKSPACE
 ls -l
+chmod 755 $WORKSPACE/buildfarm/"\$@"
 exec $WORKSPACE/buildfarm/"\$@"
 EOF
 
