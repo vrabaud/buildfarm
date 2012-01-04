@@ -4,6 +4,8 @@
 /bin/echo $*
 id
 
+sudo apt-get install python-setuptools
+
 easy_install -U rosinstall
 
 apt-get install ccache wget curl curl-ssl sudo
@@ -13,7 +15,7 @@ case $1 in
         apt-get install -y wget git-core mercurial subversion \
             ccache lsb-release ccache cmake libopenmpi-dev \
             libboost-dev libboost-all-dev python-all \
-            gccxml python-empy python-yaml python-setuptools \
+            gccxml python-empy python-yaml \
             openssl sudo liblog4cxx10-dev
         ;;
 esac
