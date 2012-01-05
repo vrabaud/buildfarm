@@ -8,6 +8,9 @@ apt-get install -y python-setuptools ccache wget curl curl-ssl sudo
 
 easy_install -U rosinstall
 
+git config --global user.name  "Willow Garage Package Ranch Bot"
+git config --global user.email "pkgranchbot@willowgarage.com"
+
 case $1 in
     fat)
         apt-get install -y wget git-core mercurial subversion \
