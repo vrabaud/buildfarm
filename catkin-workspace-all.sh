@@ -1,6 +1,8 @@
 #!/bin/sh -ex
 
-/bin/echo "vvvvvvvvvvvvvvvvvvv  catkin_multiconf.sh vvvvvvvvvvvvvvvvvvvvvv"
+./buildfarm/sanity_check.sh
+
+/bin/echo "vvvvvvvvvvvvvvvvvvv  catkin-workspace-all.sh vvvvvvvvvvvvvvvvvvvvvv"
 
 if [ -z "$WORKSPACE" ] ; then
     /bin/echo "Don't see no workspace."
@@ -27,4 +29,4 @@ $WORKSPACE/build/env.sh $WORKSPACE/src/ros/tools/rosunit/scripts/clean_junit_xml
 make install DESTDIR=$(/bin/pwd)/DESTDIR
 
 
-/bin/echo "^^^^^^^^^^^^^^^^^^  catkin_multiconf.sh ^^^^^^^^^^^^^^^^^^^^"
+/bin/echo "^^^^^^^^^^^^^^^^^^  catkin-workspace-all.sh ^^^^^^^^^^^^^^^^^^^^"
