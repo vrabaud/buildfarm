@@ -16,7 +16,7 @@ case $1 in
         apt-get install -y wget git-core mercurial subversion \
             ccache lsb-release ccache cmake libopenmpi-dev \
             libboost-dev libboost-all-dev python-all \
-            gccxml python-empy python-yaml \
+            gccxml python-empy python-yaml python-nose \
             openssl sudo liblog4cxx10-dev libgtest-dev libbz2-dev
         ;;
 esac
