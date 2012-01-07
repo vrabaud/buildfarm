@@ -1,4 +1,4 @@
-#!/bin/sh -ex
+#!/bin/sh -e
 
 ./buildfarm/sanity_check.sh
 
@@ -11,8 +11,8 @@ fi
 
 cd $WORKSPACE
 
-curl -s https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall > test.rosinstall
-rosinstall -n src test.rosinstall
+curl -s https://raw.github.com/willowgarage/catkin/master/test/full.rosinstall > full.rosinstall
+rosinstall -n src full.rosinstall
 
 cd src
 rm -f CMakeLists.txt
@@ -30,3 +30,5 @@ make install DESTDIR=$(/bin/pwd)/DESTDIR
 
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  catkin-workspace-all.sh ^^^^^^^^^^^^^^^^^^^^"
+
+./buildfarm/sanity_check.sh
