@@ -7,6 +7,7 @@ id
 apt-get install -y python-setuptools ccache wget curl curl-ssl sudo
 
 easy_install -U rosinstall
+easy_install -U sphinx
 
 case $1 in
     fat)
