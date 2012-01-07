@@ -66,8 +66,8 @@ pwd
 ls -l
 cd $WORKSPACE
 ls -l
-chmod 755 $WORKSPACE/buildfarm/"\$@"
-exec $WORKSPACE/buildfarm/"\$@"
+chmod 755 $WORKSPACE/buildfarm/${SCRIPT}.sh
+exec $WORKSPACE/buildfarm/${SCRIPT}.sh ${SCRIPTARGS}
 EOF
 
 chmod 755 pbuilder-env.sh
@@ -87,6 +87,6 @@ sudo pbuilder execute \
     --basetgz /var/cache/pbuilder/$IMAGETYPE.$UBUNTU_DISTRO.$ARCH.tgz \
     --bindmounts "/var/cache/pbuilder/ccache /home" \
     --inputfile $WORKSPACE/buildfarm/$SCRIPT.sh \
-    -- $WORKSPACE/pbuilder-env.sh $SCRIPT.sh ${SCRIPTARGS}
+    -- $WORKSPACE/pbuilder-env.sh $SCRIPT.sh
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  dispatch.sh ^^^^^^^^^^^^^^^^^^^^"
