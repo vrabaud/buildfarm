@@ -1,8 +1,8 @@
-#!/bin/sh -ex
+#!/bin/sh -e
 
-/bin/echo "vvvvvvvvvvvvvvvvvvv  catkin_multiconf.sh vvvvvvvvvvvvvvvvvvvvvv"
+./buildfarm/sanity_check.sh
 
-cat $HOME/.pbuilderrc
+/bin/echo "vvvvvvvvvvvvvvvvvvv  gbp-3rdparty.sh vvvvvvvvvvvvvvvvvvvvvv"
 
 if [ -z "$WORKSPACE" ] ; then
     /bin/echo "Don't see no workspace."
@@ -11,9 +11,13 @@ fi
 
 cd $WORKSPACE
 
-rm -f test.rosinstall*
-wget https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall
-rosinstall -n src test.rosinstall
+PKG=$1
+
+exit 0
+
+curl -s https://raw.github.com/willowgarage/catkin/master/test/full.rosinstall > full.rosinstall
+rosinstall -n src full.rosinstall
+
 cd src
 rm -f CMakeLists.txt
 ln -s catkin/toplevel.cmake CMakeLists.txt
@@ -22,12 +26,13 @@ rm -rf build
 mkdir build
 cd build
 cmake ../src
-cat CMakeCache.txt
 export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
-make VERBOSE=1
+make
 make -i test
 $WORKSPACE/build/env.sh $WORKSPACE/src/ros/tools/rosunit/scripts/clean_junit_xml.py
 make install DESTDIR=$(/bin/pwd)/DESTDIR
 
 
-/bin/echo "^^^^^^^^^^^^^^^^^^  catkin_multiconf.sh ^^^^^^^^^^^^^^^^^^^^"
+/bin/echo "^^^^^^^^^^^^^^^^^^  gbp-3rdparty.sh ^^^^^^^^^^^^^^^^^^^^"
+
+./buildfarm/sanity_check.sh

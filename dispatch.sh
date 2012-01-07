@@ -25,6 +25,11 @@ UBUNTU_DISTRO=$UBUNTU_DISTRO
 ARCH=$ARCH
 EOF
 
+if [[ $SCRIPT =~ ^([^/]+)/([^/]+)$ ]] ; then
+    SCRIPT=${BASH_REMATCH[1]}
+    SCRIPTARGS=${BASH_REMATCH[2]}
+fi
+
 #
 #  update buildfarm utils
 #
@@ -82,6 +87,6 @@ sudo pbuilder execute \
     --basetgz /var/cache/pbuilder/$IMAGETYPE.$UBUNTU_DISTRO.$ARCH.tgz \
     --bindmounts "/var/cache/pbuilder/ccache /home" \
     --inputfile $WORKSPACE/buildfarm/$SCRIPT.sh \
-    -- $WORKSPACE/pbuilder-env.sh $SCRIPT.sh
+    -- $WORKSPACE/pbuilder-env.sh $SCRIPT.sh ${SCRIPTARGS}
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  dispatch.sh ^^^^^^^^^^^^^^^^^^^^"
