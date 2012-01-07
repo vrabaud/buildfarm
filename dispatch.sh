@@ -25,7 +25,7 @@ UBUNTU_DISTRO=$UBUNTU_DISTRO
 ARCH=$ARCH
 EOF
 
-if [[ $SCRIPT =~ ^([^/]+)/([^/]+)$ ]] ; then
+if [[ $SCRIPT =~ ^([^=]+)=([^=]+)$ ]] ; then
     SCRIPT=${BASH_REMATCH[1]}
     SCRIPTARGS=${BASH_REMATCH[2]}
 fi
