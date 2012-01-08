@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-./buildfarm/sanity_check.sh
+$WORKSPACE/buildfarm/sanity_check.sh
 
 /bin/echo "vvvvvvvvvvvvvvvvvvv  gbp-3rdparty.sh vvvvvvvvvvvvvvvvvvvvvv"
 
@@ -32,4 +32,4 @@ make install
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  gbp-3rdparty.sh ^^^^^^^^^^^^^^^^^^^^"
 
-./buildfarm/sanity_check.sh
+$WORKSPACE/buildfarm/sanity_check.sh

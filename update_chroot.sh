@@ -17,7 +17,8 @@ case $1 in
             gccxml python-empy python-yaml python-nose python-mock python-minimock \
             python-numpy \
             python-wxgtk2.8 \
-            openssl sudo liblog4cxx10-dev libgtest-dev libbz2-dev
+            openssl sudo liblog4cxx10-dev libgtest-dev libbz2-dev \
+            libhdf5-dev octave3.2 libtbb-dev libtbb2
         ;;
 esac
 
