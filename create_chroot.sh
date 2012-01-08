@@ -18,7 +18,6 @@ if [ ! -f $BASETGZ ] ; then
     sudo flock $IMAGELOCK -c "pbuilder --create --distribution $DISTRO --architecture $ARCH --basetgz $BASETGZ --debootstrapopts --variant=buildd --components \"main universe multiverse\""
 fi
 
-STAMP=$WORKSPACE/$IMAGETYPE.$DISTRO.$ARCH.update.stamp
 UPDATE=$WORKSPACE/buildfarm/update_chroot.sh
 
 /bin/echo "This script last updated at:"
@@ -35,7 +34,7 @@ fi
 if [ $REPOSTAMP -gt $IMAGESTAMP ] ; then
 
     /bin/echo "update has been updated, so let's update"
-    /bin/echo $REPOSTAMP > $IMAGESTAMP
+    /bin/echo $REPOSTAMP > $IMAGESTAMPFILE
     sudo flock $IMAGELOCK -c "pbuilder execute --basetgz $BASETGZ --save-after-exec -- $UPDATE $IMAGETYPE"
 
 fi
