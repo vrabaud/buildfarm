@@ -31,4 +31,5 @@ make install DESTDIR=$(/bin/pwd)/DESTDIR
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  catkin-workspace-all.sh ^^^^^^^^^^^^^^^^^^^^"
 
-./buildfarm/sanity_check.sh
+cd $WORKSPACE
+$WORKSPACE/buildfarm/sanity_check.sh
