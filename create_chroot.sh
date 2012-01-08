@@ -34,7 +34,9 @@ fi
 if [ $REPOSTAMP -gt $IMAGESTAMP ] ; then
 
     /bin/echo "update has been updated, so let's update"
-    /bin/echo $REPOSTAMP > $IMAGESTAMPFILE
+    /bin/echo $REPOSTAMP > stamp.tmp
+    sudo rm -f $IMAGESTAMPFILE
+    sudo mv stamp.tmp $IMAGESTAMPFILE
     sudo flock $IMAGELOCK -c "pbuilder execute --basetgz $BASETGZ --save-after-exec -- $UPDATE $IMAGETYPE"
 
 fi
