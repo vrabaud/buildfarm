@@ -23,7 +23,7 @@ mkdir build
 cd build
 cmake ../src
 export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
-make
+make -j5
 make -i test
 $WORKSPACE/build/env.sh $WORKSPACE/src/ros/tools/rosunit/scripts/clean_junit_xml.py
 make install DESTDIR=$(/bin/pwd)/DESTDIR
