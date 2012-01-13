@@ -1,10 +1,10 @@
 #!/bin/bash -eu
 set -o errexit
 
-/bin/echo `which gcc` :: `gcc --version`
-/bin/echo `which ccache` :: `ccache -s`
-/bin/echo `which curl` :: `curl --version`
-/bin/echo `which rosinstall` :: `rosinstall --version`
+gcc --version
+ccache -s
+which curl
+which rosinstall
 
 cat > main.cpp <<EOF
 #include <iostream>

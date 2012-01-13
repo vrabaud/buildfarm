@@ -25,6 +25,11 @@ UBUNTU_DISTRO=$UBUNTU_DISTRO
 ARCH=$ARCH
 EOF
 
+if [[ $SCRIPT =~ ^([^_]+)_([^_]+)$ ]] ; then
+    SCRIPT=${BASH_REMATCH[1]}
+    SCRIPTARGS=${BASH_REMATCH[2]}
+fi
+
 #
 #  update buildfarm utils
 #
@@ -61,8 +66,8 @@ pwd
 ls -l
 cd $WORKSPACE
 ls -l
-chmod 755 $WORKSPACE/buildfarm/"\$@"
-exec $WORKSPACE/buildfarm/"\$@"
+chmod 755 $WORKSPACE/buildfarm/${SCRIPT}.sh
+exec $WORKSPACE/buildfarm/${SCRIPT}.sh ${SCRIPTARGS}
 EOF
 
 chmod 755 pbuilder-env.sh

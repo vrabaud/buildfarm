@@ -15,8 +15,8 @@ fi
 
 cd $WORKSPACE
 
-curl -s https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall > test.rosinstall
-rosinstall -n src test.rosinstall
+curl -s https://raw.github.com/willowgarage/catkin/master/test/full.rosinstall > full.rosinstall
+rosinstall -n src full.rosinstall
 
 rm -rf SCRATCH
 mkdir SCRATCH
