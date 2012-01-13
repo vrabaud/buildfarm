@@ -4,7 +4,7 @@
 /bin/echo $*
 id
 
-apt-get install -y python-setuptools ccache wget curl curl-ssl sudo
+apt-get install -y python-setuptools ccache wget curl curl-ssl sudo git-buildpackage dput
 
 easy_install -U rosinstall
 
