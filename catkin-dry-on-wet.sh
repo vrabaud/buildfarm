@@ -32,9 +32,9 @@ DESTDIR=$(/bin/pwd)/DESTDIR
 make install DESTDIR=$DESTDIR
 
 cd ..
-rm -rf dry/*
-mkdir -p dry
-cd dry
+rm -rf dryland/*
+mkdir -p dryland
+cd dryland
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/desktop-overlay.rosinstall > desktop-overlay.rosinstall
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.rosinstall > extras.rosinstall
 # temporary: protect against kforge auth errors
