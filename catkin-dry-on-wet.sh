@@ -32,7 +32,7 @@ DESTDIR=$(/bin/pwd)/DESTDIR
 make install DESTDIR=$DESTDIR
 
 cd ..
-mkdir dry
+mkdir -p dry
 cd dry
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/desktop-overlay.rosinstall > desktop-overlay.rosinstall
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.rosinstall > extras.rosinstall
