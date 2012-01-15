@@ -1,5 +1,6 @@
 #!/bin/sh -e
 
+set -x
 ./buildfarm/sanity_check.sh
 
 /bin/echo "vvvvvvvvvvvvvvvvvvv  catkin-workspace-all.sh vvvvvvvvvvvvvvvvvvvvvv"
@@ -22,7 +23,7 @@ rm -f CMakeLists.txt
 ln -s catkin/toplevel.cmake CMakeLists.txt
 cd ..
 #rm -rf build
-#mkdir build
+#mkdir -p build
 #cd build
 DESTDIR=$WORKSPACE/install
 #cmake -DCMAKE_INSTALL_PREFIX=$DESTDIR ../src
@@ -39,8 +40,8 @@ curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.r
 cmd="rosinstall -n --delete-changed-uris $WORKSPACE/dry_land $DESTDIR $WORKSPACE/dry_land/desktop-overlay.rosinstall $WORKSPACE/dry_land/extras.rosinstall"
 $cmd
 #while ! $cmd; do echo "Trying again..." ; done
-. $WORKSPACE/dry_land/setup.bash
-. $DESTDIR/setup.bash
+. $WORKSPACE/dry_land/setup.sh
+. $DESTDIR/setup.sh
 rosmake -a -k
 
 
