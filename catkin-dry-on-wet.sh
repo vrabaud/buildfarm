@@ -21,13 +21,14 @@ cd ..
 rm -rf build
 mkdir build
 cd build
-cmake ../src
-export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
-make
+#cmake ../src
+#export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
+#make
 #make -i test
 #$WORKSPACE/build/env.sh $WORKSPACE/src/ros/tools/rosunit/scripts/clean_junit_xml.py
 DESTDIR=$(/bin/pwd)/DESTDIR
-make install DESTDIR=$DESTDIR
+mkdir $DESTDIR
+#make install DESTDIR=$DESTDIR
 
 cd ..
 mkdir dry
@@ -38,8 +39,8 @@ rosinstall -n . $DESTDIR desktop-overlay.rosinstall extras.rosinstall
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/perception_pcl-unstable-build-fix.diff > perception_pcl-unstable-build-fix.diff 
 patch -d perception_pcl -p0 < perception_pcl-unstable-build-fix.diff
 . setup.bash
-. $DESTDIR/setup.bash
-rosmake -a -k
+#. $DESTDIR/setup.bash
+#rosmake -a -k
 
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  catkin-workspace-all.sh ^^^^^^^^^^^^^^^^^^^^"
