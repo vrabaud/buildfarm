@@ -45,8 +45,6 @@ ls -la $DESTDIR
 cat $DESTDIR/.rosinstall
 $cmd
 #while ! $cmd; do echo "Trying again..." ; done
-curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/perception_pcl-unstable-build-fix.diff > perception_pcl-unstable-build-fix.diff 
-patch -d perception_pcl -p0 < perception_pcl-unstable-build-fix.diff
 . setup.bash
 . $DESTDIR/setup.bash
 rosmake -a -k
