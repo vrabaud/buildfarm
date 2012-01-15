@@ -12,6 +12,9 @@ fi
 
 cd $WORKSPACE
 
+# TODO: integrate rosdep
+sudo apt-get install -y pkg-config unzip
+
 curl -s https://raw.github.com/willowgarage/catkin/master/test/full.rosinstall > full.rosinstall
 # temporary: protect against kforge auth errors
 cmd="rosinstall -n --delete-changed-uris src full.rosinstall"
