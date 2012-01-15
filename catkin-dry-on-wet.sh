@@ -35,6 +35,8 @@ cd dry
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/desktop-overlay.rosinstall > unstable.rosinstall
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.rosinstall >> unstable.rosinstall
 rosinstall -n . $DESTDIR unstable.rosinstall
+curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/perception_pcl-unstable-build-fix.diff > perception_pcl-unstable-build-fix.diff 
+patch -d perception_pcl -p0 < perception_pcl-unstable-build-fix.diff
 . setup.bash
 . $DESTDIR/setup.bash
 rosmake -a -k
