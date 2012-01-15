@@ -24,13 +24,13 @@ cd ..
 rm -rf build
 mkdir build
 cd build
-cmake ../src
+DESTDIR=$WORKSPACE/install
+cmake -DCMAKE_INSTALL_PREFIX=$DESTDIR ../src
 #export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
 make
 #make -i test
 #$WORKSPACE/build/env.sh $WORKSPACE/src/ros/tools/rosunit/scripts/clean_junit_xml.py
-DESTDIR=$(/bin/pwd)/DESTDIR
-make install DESTDIR=$DESTDIR
+make install
 
 cd ..
 rm -rf dry_land/*
@@ -39,10 +39,10 @@ cd dry_land
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/desktop-overlay.rosinstall > desktop-overlay.rosinstall
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.rosinstall > extras.rosinstall
 # temporary: protect against kforge auth errors
-cmd="rosinstall -n --delete-changed-uris . $DESTDIR/usr/local desktop-overlay.rosinstall extras.rosinstall"
+cmd="rosinstall -n --delete-changed-uris . $DESTDIR desktop-overlay.rosinstall extras.rosinstall"
 echo $cmd
-ls -la $DESTDIR/usr/local
-cat $DESTDIR/usr/local/.rosinstall
+ls -la $DESTDIR
+cat $DESTDIR/.rosinstall
 $cmd
 #while ! $cmd; do echo "Trying again..." ; done
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/perception_pcl-unstable-build-fix.diff > perception_pcl-unstable-build-fix.diff 
