@@ -38,6 +38,7 @@ cd dryland
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/desktop-overlay.rosinstall > desktop-overlay.rosinstall
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.rosinstall > extras.rosinstall
 # temporary: protect against kforge auth errors
+echo $cmd
 cmd="rosinstall -n --delete-changed-uris . $DESTDIR/usr/local desktop-overlay.rosinstall extras.rosinstall"
 while ! $cmd; do echo "Trying again..." ; done
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/perception_pcl-unstable-build-fix.diff > perception_pcl-unstable-build-fix.diff 
