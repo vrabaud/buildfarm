@@ -14,7 +14,8 @@ cd $WORKSPACE
 curl -s https://raw.github.com/willowgarage/catkin/master/test/full.rosinstall > full.rosinstall
 # temporary: protect against kforge auth errors
 cmd="rosinstall -n --delete-changed-uris src full.rosinstall"
-while ! $cmd; do echo "Trying again..." ; done
+$cmd
+#while ! $cmd; do echo "Trying again..." ; done
 
 cd src
 rm -f CMakeLists.txt
@@ -32,16 +33,17 @@ DESTDIR=$(/bin/pwd)/DESTDIR
 make install DESTDIR=$DESTDIR
 
 cd ..
-rm -rf dryland/*
-mkdir -p dryland
-cd dryland
+rm -rf dry_land/*
+mkdir -p dry_land
+cd dry_land
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/desktop-overlay.rosinstall > desktop-overlay.rosinstall
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.rosinstall > extras.rosinstall
 # temporary: protect against kforge auth errors
 cmd="rosinstall -n --delete-changed-uris . $DESTDIR/usr/local desktop-overlay.rosinstall extras.rosinstall"
 echo $cmd
 ls -la $DESTDIR/usr/local
-while ! $cmd; do echo "Trying again..." ; done
+$cmd
+#while ! $cmd; do echo "Trying again..." ; done
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/perception_pcl-unstable-build-fix.diff > perception_pcl-unstable-build-fix.diff 
 patch -d perception_pcl -p0 < perception_pcl-unstable-build-fix.diff
 . setup.bash
