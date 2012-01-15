@@ -32,14 +32,13 @@ DESTDIR=$(/bin/pwd)/DESTDIR
 make install DESTDIR=$DESTDIR
 
 cd ..
+rm -rf dry
 mkdir -p dry
 cd dry
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/desktop-overlay.rosinstall > desktop-overlay.rosinstall
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.rosinstall > extras.rosinstall
 # temporary: protect against kforge auth errors
-cmd="rosinstall -n --delete-changed-uris . $DESTDIR desktop-overlay.rosinstall extras.rosinstall"
-echo `ls $DESTDIR`
-echo $cmd
+cmd="rosinstall -n --delete-changed-uris . $DESTDIR/usr/local desktop-overlay.rosinstall extras.rosinstall"
 while ! $cmd; do echo "Trying again..." ; done
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/perception_pcl-unstable-build-fix.diff > perception_pcl-unstable-build-fix.diff 
 patch -d perception_pcl -p0 < perception_pcl-unstable-build-fix.diff
