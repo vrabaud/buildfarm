@@ -32,20 +32,14 @@ make
 #$WORKSPACE/build/env.sh $WORKSPACE/src/ros/tools/rosunit/scripts/clean_junit_xml.py
 make install
 
-cd ..
-rm -rf dry_land/*
-mkdir -p dry_land
-cd dry_land
-curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/desktop-overlay.rosinstall > desktop-overlay.rosinstall
-curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.rosinstall > extras.rosinstall
+mkdir -p $WORKSPACE/dry_land
+curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/desktop-overlay.rosinstall > $WORKSPACE/dry_land/desktop-overlay.rosinstall
+curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.rosinstall > $WORKSPACE/dry_land/extras.rosinstall
 # temporary: protect against kforge auth errors
-cmd="rosinstall -n --delete-changed-uris . $DESTDIR desktop-overlay.rosinstall extras.rosinstall"
-echo $cmd
-ls -la $DESTDIR
-cat $DESTDIR/.rosinstall
+cmd="rosinstall -n --delete-changed-uris $WORKSPACE/dry_land $DESTDIR $WORKSPACE/dry_land/desktop-overlay.rosinstall $WORKSPACE/dry_land/extras.rosinstall"
 $cmd
 #while ! $cmd; do echo "Trying again..." ; done
-. setup.bash
+. $WORKSPACE/dry_land/setup.bash
 . $DESTDIR/setup.bash
 rosmake -a -k
 
