@@ -38,6 +38,8 @@ curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/desktop-
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.rosinstall > extras.rosinstall
 # temporary: protect against kforge auth errors
 cmd="rosinstall -n --delete-changed-uris . $DESTDIR desktop-overlay.rosinstall extras.rosinstall"
+echo `ls $DESTDIR`
+echo $cmd
 while ! $cmd; do echo "Trying again..." ; done
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/perception_pcl-unstable-build-fix.diff > perception_pcl-unstable-build-fix.diff 
 patch -d perception_pcl -p0 < perception_pcl-unstable-build-fix.diff
