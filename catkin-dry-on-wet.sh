@@ -10,29 +10,29 @@ if [ -z "$WORKSPACE" ] ; then
 fi
 
 cd $WORKSPACE
-
-curl -s https://raw.github.com/willowgarage/catkin/master/test/full.rosinstall > full.rosinstall
-# temporary: protect against kforge auth errors
-cmd="rosinstall -n --delete-changed-uris src full.rosinstall"
-while ! $cmd; do echo "Trying again..." ; done
-
-cd src
-rm -f CMakeLists.txt
-ln -s catkin/toplevel.cmake CMakeLists.txt
-cd ..
-rm -rf build
-mkdir build
-cd build
-cmake ../src
-#export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
-make
-#make -i test
-#$WORKSPACE/build/env.sh $WORKSPACE/src/ros/tools/rosunit/scripts/clean_junit_xml.py
-DESTDIR=$(/bin/pwd)/DESTDIR
-make install DESTDIR=$DESTDIR
-
-cd ..
-rm -rf dry
+#
+#curl -s https://raw.github.com/willowgarage/catkin/master/test/full.rosinstall > full.rosinstall
+## temporary: protect against kforge auth errors
+#cmd="rosinstall -n --delete-changed-uris src full.rosinstall"
+#while ! $cmd; do echo "Trying again..." ; done
+#
+#cd src
+#rm -f CMakeLists.txt
+#ln -s catkin/toplevel.cmake CMakeLists.txt
+#cd ..
+#rm -rf build
+#mkdir build
+#cd build
+#cmake ../src
+##export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
+#make
+##make -i test
+##$WORKSPACE/build/env.sh $WORKSPACE/src/ros/tools/rosunit/scripts/clean_junit_xml.py
+#DESTDIR=$(/bin/pwd)/DESTDIR
+#make install DESTDIR=$DESTDIR
+#
+#cd ..
+rm -rf dry/*
 mkdir -p dry
 cd dry
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/desktop-overlay.rosinstall > desktop-overlay.rosinstall
