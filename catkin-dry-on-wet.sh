@@ -42,6 +42,7 @@ curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.r
 cmd="rosinstall -n --delete-changed-uris . $DESTDIR/usr/local desktop-overlay.rosinstall extras.rosinstall"
 echo $cmd
 ls -la $DESTDIR/usr/local
+cat $DESTDIR/usr/local/.rosinstall
 $cmd
 #while ! $cmd; do echo "Trying again..." ; done
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/perception_pcl-unstable-build-fix.diff > perception_pcl-unstable-build-fix.diff 
