@@ -18,8 +18,9 @@ sudo apt-get install -y pkg-config unzip
 curl -s https://raw.github.com/willowgarage/catkin/master/test/full.rosinstall > full.rosinstall
 # temporary: protect against kforge auth errors
 cmd="rosinstall -n --delete-changed-uris src full.rosinstall"
-$cmd
-#while ! $cmd; do echo "Trying again..." ; done
+i=0
+while [ $i -lt 10 ]; do if $cmd; then break; fi; echo "rosinstall failed..."; i=$(($i+1)); done
+
 
 cd src
 rm -f CMakeLists.txt
@@ -41,8 +42,8 @@ curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/desktop-
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.rosinstall > $WORKSPACE/dry_land/extras.rosinstall
 # temporary: protect against kforge auth errors
 cmd="rosinstall -n --delete-changed-uris $WORKSPACE/dry_land $DESTDIR $WORKSPACE/dry_land/desktop-overlay.rosinstall $WORKSPACE/dry_land/extras.rosinstall"
-$cmd
-#while ! $cmd; do echo "Trying again..." ; done
+i=0
+while [ $i -lt 10 ]; do if $cmd; then break; fi; echo "rosinstall failed..."; i=$(($i+1)); done
 . $WORKSPACE/dry_land/setup.sh
 . $DESTDIR/setup.sh
 rosmake -a -k
