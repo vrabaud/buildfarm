@@ -28,6 +28,7 @@ cd ..
 mkdir -p build
 cd build
 DESTDIR=$WORKSPACE/install
+rm -rf $DESTDIR
 cmake -DCMAKE_INSTALL_PREFIX=$DESTDIR ../src
 #export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
 make
