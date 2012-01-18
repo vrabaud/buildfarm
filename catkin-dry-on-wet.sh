@@ -46,7 +46,6 @@ export ROS_HOME=$WORKSPACE/build/ros_home
 export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
 make
 #make -i test
-#$WORKSPACE/build/env.sh $WORKSPACE/src/ros/tools/rosunit/scripts/clean_junit_xml.py
 make install
 
 mkdir -p $WORKSPACE/dry_land
@@ -62,6 +61,8 @@ if ! rosmake -a -k; then
   fail=1
 fi
 rosmake -a --test-only || true
+
+$WORKSPACE/build/env.sh $WORKSPACE/src/ros/tools/rosunit/scripts/clean_junit_xml.py
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  catkin-workspace-all.sh ^^^^^^^^^^^^^^^^^^^^"
 
