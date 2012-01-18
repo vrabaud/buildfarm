@@ -25,6 +25,10 @@ hg up
 sudo python setup.py install
 cd ..
 
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu oneiric main" > /etc/apt/sources.list.d/ros-latest.list'
+wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
+sudo apt-get update
+
 curl -s https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall > test.rosinstall
 rosinstall -n --delete-changed-uris src test.rosinstall
 
