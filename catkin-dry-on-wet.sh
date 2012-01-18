@@ -18,14 +18,13 @@ sudo apt-get install python-pip
 sudo pip install --upgrade rosdep
 
 curl -s https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall > test.rosinstall
-rm -rf src
 rosinstall -n --delete-changed-uris src test.rosinstall
 
 cd src
 rm -f CMakeLists.txt
 ln -s catkin/toplevel.cmake CMakeLists.txt
 cd ..
-rm -rf build
+#rm -rf build
 mkdir -p build
 cd build
 DESTDIR=$WORKSPACE/install
