@@ -13,9 +13,17 @@ fi
 cd $WORKSPACE
 
 # get ros system tools
-sudo apt-get install -y python-pip
+#sudo apt-get install -y python-pip
 #sudo pip install --upgrade rosinstall
-sudo pip install --upgrade rosdep
+#sudo pip install --upgrade rosdep
+if [ ! -d rosdep ]; then
+  hg clone https://kforge.ros.org/rosrelease/rosdep
+fi
+cd rosdep
+hg pull
+hg up
+sudo python setup.py install
+cd ..
 
 curl -s https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall > test.rosinstall
 rosinstall -n --delete-changed-uris src test.rosinstall
