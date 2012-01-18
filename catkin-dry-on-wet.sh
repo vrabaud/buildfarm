@@ -43,7 +43,7 @@ DESTDIR=$WORKSPACE/install
 rm -rf $DESTDIR
 cmake -DCMAKE_INSTALL_PREFIX=$DESTDIR ../src
 export ROS_HOME=$WORKSPACE/build/ros_home
-#export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
+export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
 make
 #make -i test
 #$WORKSPACE/build/env.sh $WORKSPACE/src/ros/tools/rosunit/scripts/clean_junit_xml.py
@@ -57,10 +57,18 @@ rosinstall -n --delete-changed-uris $WORKSPACE/dry_land $DESTDIR $WORKSPACE/dry_
 . $WORKSPACE/dry_land/setup.sh
 . $DESTDIR/setup.sh
 rosdep install -y -a
-rosmake -a -k
-
+fail=0
+if ! rosmake -a -k; then
+  fail=1
+fi
+rosmake -a --test-only || true
 
 /bin/echo "^^^^^^^^^^^^^^^^^^  catkin-workspace-all.sh ^^^^^^^^^^^^^^^^^^^^"
+
+if [ $fail -eq 1 ]; then
+  echo "Build failed"
+  exit 1
+fi
 
 cd $WORKSPACE
 $WORKSPACE/buildfarm/sanity_check.sh
