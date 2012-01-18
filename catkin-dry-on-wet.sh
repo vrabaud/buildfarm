@@ -14,7 +14,7 @@ cd $WORKSPACE
 
 # get ros system tools
 sudo apt-get install python-pip
-sudo pip install --upgrade rosinstall
+#sudo pip install --upgrade rosinstall
 sudo pip install --upgrade rosdep
 
 curl -s https://raw.github.com/willowgarage/catkin/master/test/full.rosinstall > full.rosinstall
