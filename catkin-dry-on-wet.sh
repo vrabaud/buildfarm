@@ -42,6 +42,7 @@ cd build
 DESTDIR=$WORKSPACE/install
 rm -rf $DESTDIR
 cmake -DCMAKE_INSTALL_PREFIX=$DESTDIR ../src
+export ROS_HOME=$WORKSPACE/build/ros_home
 #export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
 make
 #make -i test
