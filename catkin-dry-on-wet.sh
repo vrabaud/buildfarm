@@ -12,8 +12,9 @@ fi
 
 cd $WORKSPACE
 
-# TODO: integrate rosdep
-sudo apt-get install -y pkg-config unzip
+# get ros system tools
+sudo pip install --upgrade rosinstall
+sudo pip install --upgrade rosdep
 
 curl -s https://raw.github.com/willowgarage/catkin/master/test/full.rosinstall > full.rosinstall
 # temporary: protect against kforge auth errors
@@ -46,6 +47,7 @@ i=0
 while [ $i -lt 10 ]; do if $cmd; then break; fi; echo "rosinstall failed..."; i=$(($i+1)); done
 . $WORKSPACE/dry_land/setup.sh
 . $DESTDIR/setup.sh
+rosdep install -a
 rosmake -a -k
 
 
