@@ -25,7 +25,7 @@ hg up
 sudo python setup.py install
 cd ..
 
-sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu oneiric main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $UBUNTU_DISTRO main" > /etc/apt/sources.list.d/ros-latest.list'
 wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
 sudo apt-get update
 
