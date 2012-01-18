@@ -43,7 +43,7 @@ curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.r
 rosinstall -n --delete-changed-uris $WORKSPACE/dry_land $DESTDIR $WORKSPACE/dry_land/desktop-overlay.rosinstall $WORKSPACE/dry_land/extras.rosinstall
 . $WORKSPACE/dry_land/setup.sh
 . $DESTDIR/setup.sh
-rosdep install -a
+rosdep install -y -a
 rosmake -a -k
 
 
