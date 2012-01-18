@@ -29,15 +29,15 @@ rm -f CMakeLists.txt
 ln -s catkin/toplevel.cmake CMakeLists.txt
 cd ..
 #rm -rf build
-#mkdir -p build
-#cd build
+mkdir -p build
+cd build
 DESTDIR=$WORKSPACE/install
-#cmake -DCMAKE_INSTALL_PREFIX=$DESTDIR ../src
+cmake -DCMAKE_INSTALL_PREFIX=$DESTDIR ../src
 #export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
-#make
+make
 #make -i test
 #$WORKSPACE/build/env.sh $WORKSPACE/src/ros/tools/rosunit/scripts/clean_junit_xml.py
-#make install
+make install
 
 mkdir -p $WORKSPACE/dry_land
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/desktop-overlay.rosinstall > $WORKSPACE/dry_land/desktop-overlay.rosinstall
