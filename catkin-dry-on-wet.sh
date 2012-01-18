@@ -13,7 +13,7 @@ fi
 cd $WORKSPACE
 
 # get ros system tools
-sudo apt-get install python-pip
+sudo apt-get install -y python-pip
 #sudo pip install --upgrade rosinstall
 sudo pip install --upgrade rosdep
 
