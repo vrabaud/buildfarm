@@ -18,11 +18,7 @@ sudo pip install --upgrade rosinstall
 sudo pip install --upgrade rosdep
 
 curl -s https://raw.github.com/willowgarage/catkin/master/test/full.rosinstall > full.rosinstall
-# temporary: protect against kforge auth errors
-cmd="rosinstall -n --delete-changed-uris src full.rosinstall"
-i=0
-while [ $i -lt 10 ]; do if $cmd; then break; fi; echo "rosinstall failed..."; i=$(($i+1)); done
-
+rosinstall -n --delete-changed-uris src full.rosinstall
 
 cd src
 rm -f CMakeLists.txt
@@ -43,9 +39,7 @@ mkdir -p $WORKSPACE/dry_land
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/desktop-overlay.rosinstall > $WORKSPACE/dry_land/desktop-overlay.rosinstall
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.rosinstall > $WORKSPACE/dry_land/extras.rosinstall
 # temporary: protect against kforge auth errors
-cmd="rosinstall -n --delete-changed-uris $WORKSPACE/dry_land $DESTDIR $WORKSPACE/dry_land/desktop-overlay.rosinstall $WORKSPACE/dry_land/extras.rosinstall"
-i=0
-while [ $i -lt 10 ]; do if $cmd; then break; fi; echo "rosinstall failed..."; i=$(($i+1)); done
+rosinstall -n --delete-changed-uris $WORKSPACE/dry_land $DESTDIR $WORKSPACE/dry_land/desktop-overlay.rosinstall $WORKSPACE/dry_land/extras.rosinstall
 . $WORKSPACE/dry_land/setup.sh
 . $DESTDIR/setup.sh
 rosdep install -a
