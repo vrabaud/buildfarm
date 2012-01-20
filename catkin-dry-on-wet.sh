@@ -56,6 +56,7 @@ rosinstall -n --delete-changed-uris $WORKSPACE/dry_land $DESTDIR $WORKSPACE/dry_
 . $DESTDIR/setup.sh
 . $WORKSPACE/dry_land/setup.sh
 rosdep install -y -a
+export VERBOSE=1
 fail=0
 if ! rosmake -a -k; then
   fail=1
