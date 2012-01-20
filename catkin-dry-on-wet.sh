@@ -32,11 +32,14 @@ sudo apt-get update
 curl -s https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall > test.rosinstall
 rosinstall -n --delete-changed-uris src test.rosinstall
 
+#temp
+sudo apt-get install -y libwxgtk2.8-dev
+
 cd src
 rm -f CMakeLists.txt
 ln -s catkin/toplevel.cmake CMakeLists.txt
 cd ..
-#rm -rf build
+rm -rf build
 mkdir -p build
 cd build
 DESTDIR=$WORKSPACE/install
@@ -57,8 +60,6 @@ rosinstall -n --delete-changed-uris $WORKSPACE/dry_land $DESTDIR $WORKSPACE/dry_
 . $DESTDIR/setup.sh
 . $WORKSPACE/dry_land/setup.sh
 rosdep install -y -a
-#temp
-sudo apt-get install -y libwxgtk2.8-dev
 export VERBOSE=1
 fail=0
 if ! rosmake -a -k; then
