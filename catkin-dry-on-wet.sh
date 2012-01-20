@@ -56,6 +56,8 @@ rosinstall -n --delete-changed-uris $WORKSPACE/dry_land $DESTDIR $WORKSPACE/dry_
 . $DESTDIR/setup.sh
 . $WORKSPACE/dry_land/setup.sh
 rosdep install -y -a
+#temp
+sudo apt-get install -y libwxgtk2.8-dev
 export VERBOSE=1
 fail=0
 if ! rosmake -a -k; then
