@@ -53,8 +53,8 @@ curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/desktop-
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.rosinstall > $WORKSPACE/dry_land/extras.rosinstall
 # temporary: protect against kforge auth errors
 rosinstall -n --delete-changed-uris $WORKSPACE/dry_land $DESTDIR $WORKSPACE/dry_land/desktop-overlay.rosinstall $WORKSPACE/dry_land/extras.rosinstall
-. $WORKSPACE/dry_land/setup.sh
 . $DESTDIR/setup.sh
+. $WORKSPACE/dry_land/setup.sh
 rosdep install -y -a
 fail=0
 if ! rosmake -a -k; then
