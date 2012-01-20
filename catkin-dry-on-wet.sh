@@ -49,6 +49,7 @@ make
 make install
 
 mkdir -p $WORKSPACE/dry_land
+rm -rf $WORKSPACE/dry_land/*
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/desktop-overlay.rosinstall > $WORKSPACE/dry_land/desktop-overlay.rosinstall
 curl -s https://raw.github.com/willowgarage/catkin/master/test/unstable/extras.rosinstall > $WORKSPACE/dry_land/extras.rosinstall
 # temporary: protect against kforge auth errors
