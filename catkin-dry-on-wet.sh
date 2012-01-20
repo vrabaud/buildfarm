@@ -62,10 +62,10 @@ rosinstall -n --delete-changed-uris $WORKSPACE/dry_land $DESTDIR $WORKSPACE/dry_
 rosdep install -y -a
 export VERBOSE=1
 fail=0
-if ! rosmake -a -k; then
+if ! rosmake --status-rate=0.1 -a -k; then
   fail=1
 fi
-rosmake -a --test-only || true
+rosmake --status-rate=0.1 -a --test-only || true
 
 $WORKSPACE/build/env.sh $WORKSPACE/src/ros/tools/rosunit/scripts/clean_junit_xml.py
 
