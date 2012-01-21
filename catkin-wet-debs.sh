@@ -1,4 +1,6 @@
 #!/bin/bash -ex
+./buildfarm/sanity_check.sh
+echo "vvvvvvvvvvvvvvvvvvv  catkin-workspace-all.sh vvvvvvvvvvvvvvvvvvvvvv"
 
 if [ ! -e __misc__/catkin/.git ]
 then
@@ -10,15 +12,10 @@ fi
 
 PATH=`pwd`/__misc__/catkin/bin:$PATH
 
-./buildfarm/sanity_check.sh
-
-echo "vvvvvvvvvvvvvvvvvvv  catkin-workspace-all.sh vvvvvvvvvvvvvvvvvvvvvv"
-
 if [ -z "$WORKSPACE" ] ; then
     /bin/echo "Don't see no workspace."
     exit 1
 fi
-
 
 distro_url=https://raw.github.com/willowgarage/rosdistro/master/fuerte.yaml
 curl -s $distro_url > distro.yaml
@@ -37,6 +34,22 @@ do
     fi
 done
 
+sudo rm -rf $WORKSPACE/*.changes
 
 catkin-build-debs-of-workspace
 
+distro=$(lsb_release -cs)
+FQDN=50.28.27.175
+
+cat > dput.cf <<EOF
+[debtarget]
+method                  = scp
+fqdn                    = $FQDN
+incoming                = /var/www/repos/building/queue/$distro
+run_dinstall            = 0
+post_upload_command     = ssh rosbuild@$FQDN -- /usr/bin/reprepro -b /var/www/repos/building --ignore=emptyfilenamepart -V processincoming $distro
+EOF
+
+dput -u -c dput.cf debtarget $WORKSPACE/*.changes
+
+#dut all debs here
