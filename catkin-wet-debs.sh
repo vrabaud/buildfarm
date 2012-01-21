@@ -1,8 +1,4 @@
-#!/bin/sh -e
-
-set -x
-
-sudo apt-get install python-argparse -y
+#!/bin/bash -ex
 
 if [ ! -e buildfarm/.git ]
 then
@@ -18,7 +14,7 @@ PATH=`pwd`/catkin/bin:$PATH
 
 ./buildfarm/sanity_check.sh
 
-/bin/echo "vvvvvvvvvvvvvvvvvvv  catkin-workspace-all.sh vvvvvvvvvvvvvvvvvvvvvv"
+echo "vvvvvvvvvvvvvvvvvvv  catkin-workspace-all.sh vvvvvvvvvvvvvvvvvvvvvv"
 
 if [ -z "$WORKSPACE" ] ; then
     /bin/echo "Don't see no workspace."

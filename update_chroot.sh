@@ -18,7 +18,8 @@ case $1 in
             python-numpy \
             python-wxgtk2.8 \
             openssl sudo liblog4cxx10-dev libgtest-dev libbz2-dev \
-            libhdf5-openmpi-dev octave3.2 libtbb-dev libtbb2
+            libhdf5-openmpi-dev octave3.2 libtbb-dev libtbb2 \
+	    debhelper python-argparse
         ;;
 esac
 
