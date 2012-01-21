@@ -51,5 +51,3 @@ post_upload_command     = ssh rosbuild@$FQDN -- /usr/bin/reprepro -b /var/www/re
 EOF
 
 dput -u -c dput.cf debtarget $WORKSPACE/*.changes
-
-#dut all debs here
