@@ -33,7 +33,7 @@ do
     dirname=$(basename ${x%.git})
     if [ -e $dirname/.git ]
     then
-	(cd $dirname && git pull)
+	(cd $dirname && git checkout master && git pull)
     else
 	git clone $x $dirname
     fi
