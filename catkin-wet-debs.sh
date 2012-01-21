@@ -1,16 +1,14 @@
 #!/bin/bash -ex
 
-if [ ! -e buildfarm/.git ]
+if [ ! -e __misc__/catkin/.git ]
 then
-    git clone git://github.com/willowgarage/buildfarm.git
+    mkdir -p __misc__
+    git clone git://github.com/willowgarage/catkin.git __misc__/catkin
+else
+    (cd __misc__/catkin && git pull)
 fi
 
-if [ ! -e catkin/.git ]
-then
-    git clone git://github.com/willowgarage/catkin.git
-fi
-
-PATH=`pwd`/catkin/bin:$PATH
+PATH=`pwd`/__misc__/catkin/bin:$PATH
 
 ./buildfarm/sanity_check.sh
 
