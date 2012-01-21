@@ -2,9 +2,7 @@
 
 set -x
 
-TOP=`pwd`
-WORKSPACE=$TOP/ws
-mkdir -p $WORKSPACE 
+sudo apt-get install python-argparse -y
 
 if [ ! -e buildfarm/.git ]
 then
