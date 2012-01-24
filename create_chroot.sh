@@ -41,4 +41,5 @@ if [ $REPOSTAMP -gt $IMAGESTAMP ] ; then
 
 fi
 
+
 /bin/echo "^^^^^^^^^^^^^^^^^^  create_chroot.sh ^^^^^^^^^^^^^^^^^^^^"
