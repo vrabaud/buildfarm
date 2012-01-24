@@ -23,6 +23,10 @@ case $1 in
         ;;
 esac
 
+ls /home
+
+unset HOME
+
 git config --global user.name  "Willow Garage Package Ranch Bot"
 git config --global user.email "pkgranchbot@willowgarage.com"
 
