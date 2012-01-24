@@ -23,9 +23,10 @@ case $1 in
         ;;
 esac
 
-ls /home
-
-unset HOME
+if [ ! id $USER ]
+then 
+    adduser $USER --disabled-password --gecos ""
+fi
 
 git config --global user.name  "Willow Garage Package Ranch Bot"
 git config --global user.email "pkgranchbot@willowgarage.com"
