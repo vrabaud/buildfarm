@@ -34,7 +34,7 @@ rosinstall -n --delete-changed-uris src test.rosinstall
 
 #temp
 sudo apt-get install -y libwxgtk2.8-dev ros-fuerte-swig-wx
-. /opt/ros/fuerte/setup.sh
+export PATH=/opt/ros/fuerte/bin:$PATH
 
 cd src
 rm -f CMakeLists.txt
