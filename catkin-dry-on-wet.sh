@@ -29,12 +29,13 @@ sudo sh -c "echo \"deb http://packages.ros.org/ros-shadow-fixed/ubuntu $UBUNTU_D
 wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
 sudo apt-get update
 
-curl -s https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall > test.rosinstall
-rosinstall -n --delete-changed-uris src test.rosinstall
-
 #temp
 sudo apt-get install -y libwxgtk2.8-dev ros-fuerte-swig-wx curl
 export PATH=/opt/ros/fuerte/bin:$PATH
+
+curl -s https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall > test.rosinstall
+rosinstall -n --delete-changed-uris src test.rosinstall
+
 
 cd src
 rm -f CMakeLists.txt
