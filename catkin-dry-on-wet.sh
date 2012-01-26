@@ -33,7 +33,7 @@ curl -s https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall >
 rosinstall -n --delete-changed-uris src test.rosinstall
 
 #temp
-sudo apt-get install -y libwxgtk2.8-dev ros-fuerte-swig-wx
+sudo apt-get install -y libwxgtk2.8-dev ros-fuerte-swig-wx curl
 export PATH=/opt/ros/fuerte/bin:$PATH
 
 cd src
