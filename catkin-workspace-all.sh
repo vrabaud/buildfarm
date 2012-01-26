@@ -11,7 +11,7 @@ fi
 
 cd $WORKSPACE
 
-sudo apt-get install curl
+sudo apt-get install -y curl
 curl -s https://raw.github.com/willowgarage/catkin/master/test/full.rosinstall > full.rosinstall
 rosinstall -n src full.rosinstall
 
