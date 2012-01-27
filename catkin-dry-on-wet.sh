@@ -53,8 +53,8 @@ make
 #make -i test
 make install
 
+rm -rf $WORKSPACE/dry_land
 mkdir -p $WORKSPACE/dry_land
-rm -rf $WORKSPACE/dry_land/*
 curl -s https://raw.github.com/willowgarage/catkin/master/test/fuerte/fuerte.rosinstall > $WORKSPACE/dry_land/fuerte.rosinstall
 rosinstall -n --delete-changed-uris $WORKSPACE/dry_land $DESTDIR $WORKSPACE/dry_land/fuerte.rosinstall
 . $DESTDIR/setup.sh
