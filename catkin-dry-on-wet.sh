@@ -53,13 +53,13 @@ make
 #make -i test
 make install
 
-rm -rf $WORKSPACE/dry_land
-mkdir -p $WORKSPACE/dry_land
-curl -s https://raw.github.com/willowgarage/catkin/master/test/fuerte/fuerte.rosinstall > $WORKSPACE/dry_land/fuerte.rosinstall
-rosinstall -n --delete-changed-uris $WORKSPACE/dry_land $DESTDIR $WORKSPACE/dry_land/fuerte.rosinstall
+#rm -rf $WORKSPACE/dry_land
+mkdir -p $WORKSPACE/dry
+curl -s https://raw.github.com/willowgarage/catkin/master/test/fuerte/fuerte.rosinstall > $WORKSPACE/dry/fuerte.rosinstall
+rosinstall -n --delete-changed-uris $WORKSPACE/dry $DESTDIR $WORKSPACE/dry/fuerte.rosinstall
 . $DESTDIR/setup.sh
-. $WORKSPACE/dry_land/setup.sh
-rosdep install -y -a
+. $WORKSPACE/dry/setup.sh
+rosdep install -y -a || true
 export VERBOSE=1
 fail=0
 if ! rosmake --status-rate=0.1 -a -k; then
