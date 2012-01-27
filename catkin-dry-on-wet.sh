@@ -31,6 +31,7 @@ sudo apt-get update
 
 #temp
 sudo apt-get install -y libwxgtk2.8-dev ros-fuerte-swig-wx curl
+sudo apt-get install -y python-paramiko python-crypto python-mock
 export PATH=/opt/ros/fuerte/bin:$PATH
 
 curl -s https://raw.github.com/willowgarage/catkin/master/test/test.rosinstall > test.rosinstall

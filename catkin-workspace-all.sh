@@ -15,6 +15,7 @@ sudo sh -c "echo \"deb http://packages.ros.org/ros-shadow-fixed/ubuntu $UBUNTU_D
 wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install -y libwxgtk2.8-dev ros-fuerte-swig-wx curl
+sudo apt-get install -y python-paramiko python-crypto python-mock
 export PATH=/opt/ros/fuerte/bin:$PATH
 
 curl -s https://raw.github.com/willowgarage/catkin/master/test/full.rosinstall > full.rosinstall
