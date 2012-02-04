@@ -14,7 +14,7 @@ cd $WORKSPACE
 sudo sh -c "echo \"deb http://packages.ros.org/ros-shadow-fixed/ubuntu $UBUNTU_DISTRO main\" > /etc/apt/sources.list.d/ros-latest.list"
 wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
 sudo apt-get update
-sudo apt-get install -y libwxgtk2.8-dev ros-fuerte-swig-wx curl
+sudo apt-get install -y libwxgtk2.8-dev ros-fuerte-swig-wx curl libqt4-dev
 sudo apt-get install -y python-paramiko python-crypto python-mock
 export PATH=/opt/ros/fuerte/bin:$PATH
 
