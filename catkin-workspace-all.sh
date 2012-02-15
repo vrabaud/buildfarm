@@ -19,6 +19,7 @@ sudo apt-get install -y python-paramiko python-crypto python-mock
 export PATH=/opt/ros/fuerte/bin:$PATH
 
 curl -s https://raw.github.com/willowgarage/catkin/master/test/full.rosinstall > full.rosinstall
+./buildfarm/remove_folder_on_change.sh src 1
 rosinstall -n src full.rosinstall
 
 cd src
