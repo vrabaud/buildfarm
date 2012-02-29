@@ -8,26 +8,33 @@ if [ -z "$WORKSPACE" ] ; then
     exit 1
 fi
 
-/bin/echo "IF you fail here your job name is corrupt."
-/bin/echo "Format:"
-/bin/echo "some-script-name.IMAGETYPE.UBUNTUCODENAME.ARCH"
+# The new way is to set SCRIPT, along with some other important
+# variables.  The old way is to infer that stuff from JOB_NAME.
+if [[ -z "$SCRIPT" ]]; then
+  # Old way
+  /bin/echo "IF you fail here your job name is corrupt."
+  /bin/echo "Format:"
+  /bin/echo "some-script-name.IMAGETYPE.UBUNTUCODENAME.ARCH"
+  
+  [[ $JOB_NAME =~ ([^\.]+)\.([^\.]+)\.([^\.]+)\.([^\.]+) ]]
+  SCRIPT=${BASH_REMATCH[1]}
+  IMAGETYPE=${BASH_REMATCH[2]}
+  UBUNTU_DISTRO=${BASH_REMATCH[3]}
+  ARCH=${BASH_REMATCH[4]}
 
-[[ $JOB_NAME =~ ([^\.]+)\.([^\.]+)\.([^\.]+)\.([^\.]+) ]]
-SCRIPT=${BASH_REMATCH[1]}
-IMAGETYPE=${BASH_REMATCH[2]}
-UBUNTU_DISTRO=${BASH_REMATCH[3]}
-ARCH=${BASH_REMATCH[4]}
-
-/bin/echo <<EOF
-SCRIPT=$SCRIPT
-IMAGETYPE=$IMAGETYPE
-UBUNTU_DISTRO=$UBUNTU_DISTRO
-ARCH=$ARCH
+  /bin/echo <<EOF
+  SCRIPT=$SCRIPT
+  IMAGETYPE=$IMAGETYPE
+  UBUNTU_DISTRO=$UBUNTU_DISTRO
+  ARCH=$ARCH
 EOF
 
-if [[ $SCRIPT =~ ^([^_]+)_([^_]+)$ ]] ; then
-    SCRIPT=${BASH_REMATCH[1]}
-    SCRIPTARGS=${BASH_REMATCH[2]}
+  if [[ $SCRIPT =~ ^([^_]+)_([^_]+)$ ]] ; then
+      SCRIPT=${BASH_REMATCH[1]}
+      SCRIPTARGS=${BASH_REMATCH[2]}
+  fi
+else
+  # New way; nothing to infer
 fi
 
 #
@@ -62,6 +69,12 @@ export WORKSPACE=$WORKSPACE
 export UBUNTU_DISTRO=$UBUNTU_DISTRO
 export ARCH=$ARCH
 export IMAGETYPE=$IMAGETYPE
+export ROSDISTRO_NAME=$ROSDISTRO_NAME
+export OS_NAME=$OS_NAME
+export OS_PLATFORM=$OS_PLATFORM
+export STACK_NAME=$STACK_NAME
+export STACK_YAML_URL=$STACK_YAML_URL
+export JOB_TYPE=$JOB_TYPE
 pwd
 ls -l
 cd $WORKSPACE
