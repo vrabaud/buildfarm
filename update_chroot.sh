@@ -4,10 +4,10 @@
 /bin/echo $*
 id
 
-apt-get install -y python-setuptools ccache wget curl curl-ssl sudo git-buildpackage dput
+apt-get install -y python-setuptools ccache wget curl curl-ssl sudo git-buildpackage dput python-yaml python-pip
 
-easy_install -U rosinstall
-easy_install -U sphinx
+pip install -U rosinstall
+pip install -U sphinx
 
 case $1 in
     fat)
