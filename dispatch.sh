@@ -17,7 +17,7 @@ if [[ -z "$SCRIPT" ]]; then
   /bin/echo "some-script-name.IMAGETYPE.UBUNTUCODENAME.ARCH"
   
   [[ $JOB_NAME =~ ([^\.]+)\.([^\.]+)\.([^\.]+)\.([^\.]+) ]]
-  SCRIPT=${BASH_REMATCH[1]}
+  SCRIPT=${BASH_REMATCH[1]}.sh
   IMAGETYPE=${BASH_REMATCH[2]}
   UBUNTU_DISTRO=${BASH_REMATCH[3]}
   ARCH=${BASH_REMATCH[4]}
@@ -77,8 +77,8 @@ pwd
 ls -l
 cd $WORKSPACE
 ls -l
-chmod 755 $WORKSPACE/buildfarm/${SCRIPT}.sh
-exec $WORKSPACE/buildfarm/${SCRIPT}.sh ${SCRIPTARGS}
+chmod 755 $WORKSPACE/buildfarm/${SCRIPT}
+exec $WORKSPACE/buildfarm/${SCRIPT} ${SCRIPTARGS}
 EOF
 
 chmod 755 pbuilder-env.sh
