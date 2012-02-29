@@ -33,8 +33,6 @@ EOF
       SCRIPT=${BASH_REMATCH[1]}
       SCRIPTARGS=${BASH_REMATCH[2]}
   fi
-else
-  # New way; nothing to infer
 fi
 
 #
