@@ -47,6 +47,8 @@ SETUP_FILE=/opt/ros/$ROSDISTRO_NAME/setup.sh
 if [[ -f $SETUP_FILE ]]; then
   . $SETUP_FILE
 fi
+export ROS_HOME=$WORKSPACE/build/ros_home
+export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
 
 # catkin-specific stuff
 #
@@ -55,5 +57,9 @@ mkdir -p $WORKSPACE/build
 cd $WORKSPACE/build && cmake $WORKSPACE/$STACK_NAME
 cd $WORKSPACE/build && make
 if cd $WORKSPACE/build && make test; then echo "tests passed"; fi
+
+if `rospack find rosunit`; then
+  $WORKSPACE/build/env.sh `rospack find rosunit`/scripts/clean_junit_xml.py
+fi
 
 sudo rm -rf $tmpdir
