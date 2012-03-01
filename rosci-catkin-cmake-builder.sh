@@ -74,7 +74,7 @@ fi
 # the build a failure
 if [[ ! -d $WORKSPACE/build/test_results/_hudson ]]; then
   mkdir -p $WORKSPACE/build/test_results/_hudson
-  echo > $WORKSPACE/build/test_results/_hudson/dummy.xml <<EOF
+  cat > $WORKSPACE/build/test_results/_hudson/dummy.xml <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuite tests="1" failures="0" time="1" errors="0" name="dummy">
   <testcase name="dummy" status="run" time="1" classname="Results"/>
