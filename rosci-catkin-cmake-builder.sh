@@ -41,8 +41,12 @@ wget $STACK_YAML_URL -O $tmpdir/stack.yaml
 APT_DEPENDENCIES=`rosci-catkin-depends $tmpdir/stack.yaml $ROSDISTRO_NAME $OS_NAME $OS_PLATFORM`
 sudo apt-get install -y $APT_DEPENDENCIES
 
-## bootstrap env
-. /opt/ros/$ROSDISTRO_NAME/setup.sh
+## bootstrap env, but only the file is present (it won't be there if we're
+## building catkin itself.)
+SETUP_FILE=/opt/ros/$ROSDISTRO_NAME/setup.sh
+if [[ -f $SETUP_FILE ]]; then
+  . $SETUP_FILE
+fi
 
 # catkin-specific stuff
 #
