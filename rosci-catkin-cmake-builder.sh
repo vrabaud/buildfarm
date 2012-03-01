@@ -59,7 +59,11 @@ cd $WORKSPACE/build && make
 if cd $WORKSPACE/build && make test; then echo "tests passed"; fi
 
 if [[ -n `rospack find rosunit` ]]; then
-  $WORKSPACE/build/env.sh `rospack find rosunit`/scripts/clean_junit_xml.py
+  if [[ -f `rospack find rosunit`/bin/clean_junit_xml.py ]]; then
+    $WORKSPACE/build/env.sh `rospack find rosunit`/bin/clean_junit_xml.py
+  elif [[ -f `rospack find rosunit`/script/clean_junit_xml.py ]]; then
+    $WORKSPACE/build/env.sh `rospack find rosunit`/script/clean_junit_xml.py
+  fi
 fi
 
 sudo rm -rf $tmpdir
