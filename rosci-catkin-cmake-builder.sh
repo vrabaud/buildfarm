@@ -72,8 +72,11 @@ fi
 
 # If there are no test results, make one up, to keep Jenkins from declaring
 # the build a failure
-if [[ ! -d $WORKSPACE/build/test_results/_hudson ]]; then
-  mkdir -p $WORKSPACE/build/test_results/_hudson
+CLEANED_TEST_DIR=$WORKSPACE/build/test_results/_hudson
+if [[ ! -d $CLEANED_TEST_DIR ]]; then
+  mkdir -p $CLEANED_TEST_DIR
+fi
+if [[ ! $(ls -A $CLEANED_TEST_DIR) ]]
   cat > $WORKSPACE/build/test_results/_hudson/dummy.xml <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuite tests="1" failures="0" time="1" errors="0" name="dummy">
