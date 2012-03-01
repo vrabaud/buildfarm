@@ -46,7 +46,7 @@ sudo apt-get install -y $APT_DEPENDENCIES
 SETUP_FILE=/opt/ros/$ROSDISTRO_NAME/setup.sh
 if [[ -f $SETUP_FILE ]]; then
   . $SETUP_FILE
-  rosdep install -y -a --os $OS_NAME:$OS_PLATFORM || true
+  rosdep install -y -a --os=$OS_NAME:$OS_PLATFORM || true
 fi
 
 # catkin-specific stuff
