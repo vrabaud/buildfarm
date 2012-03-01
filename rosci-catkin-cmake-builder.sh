@@ -9,7 +9,8 @@ PIP_DEPS="rospkg rosdep"
 MANUAL_PY_DEP_HG_URIS="https://kforge.ros.org/rosrelease/rosci"
 
 # Add the ROS repo
-sudo sh -c "echo \"deb http://packages.ros.org/ros-shadow-fixed/ubuntu $UBUNTU_DISTRO main\" > /etc/apt/sources.list.d/ros-latest.list"
+#sudo sh -c "echo \"deb http://packages.ros.org/ros-shadow-fixed/ubuntu $UBUNTU_DISTRO main\" > /etc/apt/sources.list.d/ros-latest.list"
+sudo sh -c "echo \"deb http://50.28.27.175/repos/building $UBUNTU_DISTRO main\" > /etc/apt/sources.list.d/ros-latest.list"
 wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
 sudo apt-get update
 
