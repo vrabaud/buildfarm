@@ -55,7 +55,11 @@ export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
 rm -rf $WORKSPACE/build
 mkdir -p $WORKSPACE/build
 cd $WORKSPACE/build && cmake $WORKSPACE/$STACK_NAME
-cd $WORKSPACE/build && make
+fail=0
+cd $WORKSPACE/build
+if ! make; then
+  fail=1
+fi
 if cd $WORKSPACE/build && make test; then echo "tests passed"; fi
 
 if [[ -n `rospack find rosunit` ]]; then
@@ -67,3 +71,8 @@ if [[ -n `rospack find rosunit` ]]; then
 fi
 
 sudo rm -rf $tmpdir
+
+if [ $fail -eq 1 ]; then
+  echo "Build failed"
+  exit 1
+fi
