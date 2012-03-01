@@ -58,7 +58,7 @@ cd $WORKSPACE/build && cmake $WORKSPACE/$STACK_NAME
 cd $WORKSPACE/build && make
 if cd $WORKSPACE/build && make test; then echo "tests passed"; fi
 
-if `rospack find rosunit`; then
+if [[ -n `rospack find rosunit` ]]; then
   $WORKSPACE/build/env.sh `rospack find rosunit`/scripts/clean_junit_xml.py
 fi
 
