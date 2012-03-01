@@ -61,7 +61,7 @@ cd $WORKSPACE/build
 if ! make; then
   fail=1
 fi
-if cd $WORKSPACE/build && make test; then echo "tests passed"; fi
+if cd $WORKSPACE/build && make -k test; then echo "tests passed"; fi
 
 if [[ -n `rospack find rosunit` ]]; then
   if [[ -f `rospack find rosunit`/bin/clean_junit_xml.py ]]; then
