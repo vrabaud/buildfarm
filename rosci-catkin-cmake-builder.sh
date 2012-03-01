@@ -8,6 +8,11 @@ PIP_STATIC_DEPS="nose mock coverage"
 PIP_DEPS="rospkg rosdep"
 MANUAL_PY_DEP_HG_URIS="https://kforge.ros.org/rosrelease/rosci"
 
+# Add the ROS repo
+sudo sh -c "echo \"deb http://packages.ros.org/ros-shadow-fixed/ubuntu $UBUNTU_DISTRO main\" > /etc/apt/sources.list.d/ros-latest.list"
+wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
+sudo apt-get update
+
 for p in $APT_GET_DEPS; do
   sudo apt-get install -y $p > /dev/null
 done
