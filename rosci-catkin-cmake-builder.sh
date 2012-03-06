@@ -81,8 +81,6 @@ else
   fi
 fi
 
-# If there are no test results, make one up, to keep Jenkins from declaring
-# the build a failure
 if [[ ! -d $CLEANED_TEST_DIR ]]; then
   mkdir -p $CLEANED_TEST_DIR
 fi
@@ -92,14 +90,15 @@ if [[ ! $(ls -A $CLEANED_TEST_DIR) ]]; then
   output_file_name=nose.xml
   cd $WORKSPACE/$STACK_NAME && $WORKSPACE/build/env.sh nosetests --with-xunit --xunit-file=$CLEANED_TEST_DIR/$output_file_name || true
 fi
-if [[ ! $(ls -A $CLEANED_TEST_DIR) ]]; then
-  cat > $WORKSPACE/build/test_results/_hudson/dummy.xml <<EOF
+
+# In case there are no test results, make one up, to keep Jenkins from declaring
+# the build a failure
+cat > $WORKSPACE/build/test_results/_hudson/jenkins_dummy.xml <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuite tests="1" failures="0" time="1" errors="0" name="dummy">
   <testcase name="dummy" status="run" time="1" classname="Results"/>
 </testsuite>
 EOF
-fi
 
 sudo rm -rf $tmpdir
 
