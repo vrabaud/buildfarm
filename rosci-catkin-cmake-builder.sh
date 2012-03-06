@@ -65,11 +65,11 @@ if cd $WORKSPACE/build && make -k test; then echo "tests passed"; fi
 
 CLEANED_TEST_DIR=$WORKSPACE/build/test_results/_hudson
 
-if [[ -n `rospack find rosunit` ]]; then
-  if [[ -f `rospack find rosunit`/bin/clean_junit_xml.py ]]; then
-    $WORKSPACE/build/env.sh `rospack find rosunit`/bin/clean_junit_xml.py
-  elif [[ -f `rospack find rosunit`/script/clean_junit_xml.py ]]; then
-    $WORKSPACE/build/env.sh `rospack find rosunit`/script/clean_junit_xml.py
+if [[ -n `$WORKSPACE/build/env.sh rospack find rosunit` ]]; then
+  if [[ -f `$WORKSPACE/build/env.sh rospack find rosunit`/bin/clean_junit_xml.py ]]; then
+    $WORKSPACE/build/env.sh `$WORKSPACE/build/env.sh rospack find rosunit`/bin/clean_junit_xml.py
+  elif [[ -f `$WORKSPACE/build/env.sh rospack find rosunit`/script/clean_junit_xml.py ]]; then
+    $WORKSPACE/build/env.sh `$WORKSPACE/build/env.sh rospack find rosunit`/script/clean_junit_xml.py
   fi
 else
   # If rosunit isn't available, then just copy in the .xml files (and hope
