@@ -92,7 +92,7 @@ if [[ ! $(ls -A $CLEANED_TEST_DIR) ]]; then
   output_dir_name=$WORKSPACE/build/test_results/$STACK_NAME
   output_file_name=nose.xml
   mkdir -p $output_dir_name
-  cd $WORKSPACE/$STACK_NAME && nosetests --with-xunit --xunit-file=$output_dir_name/$output_file_name
+  cd $WORKSPACE/$STACK_NAME && nosetests --with-xunit --xunit-file=$output_dir_name/$output_file_name || true
 fi
 if [[ ! $(ls -A $CLEANED_TEST_DIR) ]]; then
   cat > $WORKSPACE/build/test_results/_hudson/dummy.xml <<EOF
