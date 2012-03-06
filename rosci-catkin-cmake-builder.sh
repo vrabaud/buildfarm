@@ -90,7 +90,6 @@ if [[ ! $(ls -A $CLEANED_TEST_DIR) ]]; then
   # HACK: try running nosetests manually.  Many packages have nosetests,
   # but no corresponding CMake invocation to declare them.
   output_file_name=nose.xml
-  mkdir -p $output_dir_name
   cd $WORKSPACE/$STACK_NAME && nosetests --with-xunit --xunit-file=$CLEANED_TEST_DIR/$output_file_name || true
 fi
 if [[ ! $(ls -A $CLEANED_TEST_DIR) ]]; then
