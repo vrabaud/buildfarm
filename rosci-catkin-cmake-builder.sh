@@ -63,17 +63,26 @@ if ! make; then
 fi
 if cd $WORKSPACE/build && make -k test; then echo "tests passed"; fi
 
+CLEANED_TEST_DIR=$WORKSPACE/build/test_results/_hudson
+
 if [[ -n `rospack find rosunit` ]]; then
   if [[ -f `rospack find rosunit`/bin/clean_junit_xml.py ]]; then
     $WORKSPACE/build/env.sh `rospack find rosunit`/bin/clean_junit_xml.py
   elif [[ -f `rospack find rosunit`/script/clean_junit_xml.py ]]; then
     $WORKSPACE/build/env.sh `rospack find rosunit`/script/clean_junit_xml.py
   fi
+else
+  # If rosunit isn't available, then just copy in the .xml files (and hope
+  # that they're clean).
+  mkdir -p $CLEANED_TEST_DIR
+  files=`find $WORKSPACE/build/test_results -name "*.xml"`
+  if [[ -n $files ]]; then
+    cp $files $CLEANED_TEST_DIR
+  fi
 fi
 
 # If there are no test results, make one up, to keep Jenkins from declaring
 # the build a failure
-CLEANED_TEST_DIR=$WORKSPACE/build/test_results/_hudson
 if [[ ! -d $CLEANED_TEST_DIR ]]; then
   mkdir -p $CLEANED_TEST_DIR
 fi
