@@ -68,7 +68,7 @@ CLEANED_TEST_DIR=$WORKSPACE/build/test_results/_hudson
 if [[ -n `$WORKSPACE/build/env.sh rospack find rosunit` ]]; then
   if [[ -f `$WORKSPACE/build/env.sh rospack find rosunit`/bin/clean_junit_xml.py ]]; then
     $WORKSPACE/build/env.sh `$WORKSPACE/build/env.sh rospack find rosunit`/bin/clean_junit_xml.py
-  elif [[ -f `$WORKSPACE/build/env.sh rospack find rosunit`/script/clean_junit_xml.py ]]; then
+  elif [[ -f `$WORKSPACE/build/env.sh rospack find rosunit`/scripts/clean_junit_xml.py ]]; then
     $WORKSPACE/build/env.sh `$WORKSPACE/build/env.sh rospack find rosunit`/script/clean_junit_xml.py
   fi
 else
