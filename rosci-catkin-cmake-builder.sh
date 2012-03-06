@@ -103,7 +103,7 @@ fi
 
 sudo rm -rf $tmpdir
 
-if [ $fail -eq 1 ]; then
+if [[ $fail -eq 1 ]]; then
   echo "Build failed"
   exit 1
 fi
