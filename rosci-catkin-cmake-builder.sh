@@ -65,27 +65,12 @@ if ! make; then
 fi
 if cd $WORKSPACE/build && make -k test; then echo "tests passed"; fi
 
-CLEANED_TEST_DIR=$WORKSPACE/build/test_results/_hudson
-
-if [[ -n `$WORKSPACE/build/env.sh rospack find rosunit` ]]; then
-  if [[ -f `$WORKSPACE/build/env.sh rospack find rosunit`/bin/clean_junit_xml.py ]]; then
-    $WORKSPACE/build/env.sh `$WORKSPACE/build/env.sh rospack find rosunit`/bin/clean_junit_xml.py
-  elif [[ -f `$WORKSPACE/build/env.sh rospack find rosunit`/scripts/clean_junit_xml.py ]]; then
-    $WORKSPACE/build/env.sh `$WORKSPACE/build/env.sh rospack find rosunit`/scripts/clean_junit_xml.py
-  fi
-else
-  # If rosunit isn't available, then just copy in the .xml files (and hope
-  # that they're clean).
-  mkdir -p $CLEANED_TEST_DIR
-  files=`find $WORKSPACE/build/test_results -name "*.xml"`
-  if [[ -n $files ]]; then
-    cp $files $CLEANED_TEST_DIR
-  fi
-fi
-
+CLEANED_TEST_DIR=$ROS_TEST_RESULTS_DIR/_hudson
 if [[ ! -d $CLEANED_TEST_DIR ]]; then
   mkdir -p $CLEANED_TEST_DIR
 fi
+rosci-clean-junit-xml
+
 if [[ ! $(ls -A $CLEANED_TEST_DIR) ]]; then
   # HACK: try running nosetests manually.  Many packages have nosetests,
   # but no corresponding CMake invocation to declare them.
