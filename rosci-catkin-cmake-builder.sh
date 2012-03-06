@@ -50,6 +50,8 @@ if [[ -f $SETUP_FILE ]]; then
 fi
 export ROS_HOME=$WORKSPACE/build/ros_home
 export ROS_TEST_RESULTS_DIR=$WORKSPACE/build/test_results
+# HACK: shouldn't need to do this
+export ROS_PACKAGE_PATH=$WORKSPACE/$STACK_NAME:$ROS_PACKAGE_PATH
 
 # catkin-specific stuff
 #
