@@ -87,6 +87,14 @@ if [[ ! -d $CLEANED_TEST_DIR ]]; then
   mkdir -p $CLEANED_TEST_DIR
 fi
 if [[ ! $(ls -A $CLEANED_TEST_DIR) ]]; then
+  # HACK: try running nosetests manually.  Many packages have nosetests,
+  # but no corresponding CMake invocation to declare them.
+  output_dir_name=$WORKSPACE/build/test_results/$STACK_NAME
+  output_file_name=nose.xml
+  mkdir -p $output_dir_name
+  cd $WORKSPACE/$STACK_NAME && nosetests --with-xunit --xunit-file=$output_dir_name/$output_file_name
+fi
+if [[ ! $(ls -A $CLEANED_TEST_DIR) ]]; then
   cat > $WORKSPACE/build/test_results/_hudson/dummy.xml <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuite tests="1" failures="0" time="1" errors="0" name="dummy">
