@@ -69,7 +69,7 @@ if [[ -n `$WORKSPACE/build/env.sh rospack find rosunit` ]]; then
   if [[ -f `$WORKSPACE/build/env.sh rospack find rosunit`/bin/clean_junit_xml.py ]]; then
     $WORKSPACE/build/env.sh `$WORKSPACE/build/env.sh rospack find rosunit`/bin/clean_junit_xml.py
   elif [[ -f `$WORKSPACE/build/env.sh rospack find rosunit`/scripts/clean_junit_xml.py ]]; then
-    $WORKSPACE/build/env.sh `$WORKSPACE/build/env.sh rospack find rosunit`/script/clean_junit_xml.py
+    $WORKSPACE/build/env.sh `$WORKSPACE/build/env.sh rospack find rosunit`/scripts/clean_junit_xml.py
   fi
 else
   # If rosunit isn't available, then just copy in the .xml files (and hope
