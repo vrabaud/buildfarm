@@ -71,13 +71,6 @@ if [[ ! -d $CLEANED_TEST_DIR ]]; then
 fi
 rosci-clean-junit-xml
 
-if [[ ! $(ls -A $CLEANED_TEST_DIR) ]]; then
-  # HACK: try running nosetests manually.  Many packages have nosetests,
-  # but no corresponding CMake invocation to declare them.
-  output_file_name=nose.xml
-  cd $WORKSPACE/$STACK_NAME && $WORKSPACE/build/env.sh nosetests --with-xunit --xunit-file=$CLEANED_TEST_DIR/$output_file_name || true
-fi
-
 # In case there are no test results, make one up, to keep Jenkins from declaring
 # the build a failure
 cat > $WORKSPACE/build/test_results/_hudson/jenkins_dummy.xml <<EOF
